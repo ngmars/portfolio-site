@@ -4,7 +4,7 @@ $(document).ready(function() {
         direction: 'vertical',
         verticalCentered: true,
         anchors: ['section-hello', 'section-about-me'],
-        scrollingSpeed:700,
+        scrollingSpeed:900,
         easing: 'linear',
         loopBottom: false,
         loopTop: false,
