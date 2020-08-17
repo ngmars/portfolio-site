@@ -1,0 +1,173 @@
+body {
+  font-size: 16px;
+  color: #fff;
+  background-color: #fff;
+  background-color: rgb(26, 25, 25);
+  font-family: 'Oxygen', sans-serif;
+}
+#section-hello{
+	
+	background-color:rgb(26, 25, 25);
+	width:100%;
+	height:100%;
+	padding-top: 10px;
+
+}
+#section-about-me{
+	margin-top:50px;
+	background-color:black;
+	position:relative;
+	display: block;
+	width:100%;
+	height:100%;
+
+	
+}
+
+#header-nav{
+	background-color: black;
+	border-bottom :1px;
+	border-bottom-style: solid;
+	border-radius: 0;
+	width:100%;
+	height: 60px;
+	margin-top:-20px;
+	border: 0;
+	position: fixed;
+	padding-top:10px;
+}
+
+ #Contact-tile{
+	
+	position: absolute;
+	bottom: 0;
+	right:0;
+	width: wrap;
+	text-align: center;
+	font-size: 1.6em;
+	text-transform: uppercase;
+	color: #fff;
+	opacity:.8;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+#Name-tile{
+	margin-left:10px;
+	margin-top:20px;
+	position:inline;
+	bottom: 0;
+	right:0;
+	width: 250px;
+	text-align:left;
+	font-size: 1.6em;
+	text-transform: uppercase;
+	color: #fff;
+
+}
+.background-hello{
+	background-color:black;
+	box-sizing: border-box;
+	min-height:80vh;
+	margin-left:40px;
+	min-width:60%;
+	border-radius: 10px;
+	margin-top: -10px;
+	float:left;
+	
+}
+
+.background-hello h1{
+	text-align: center;
+	padding-top: 30%;
+	color:white;
+
+}
+.background-hello p{
+	color: gray;
+	text-align: center;
+}
+.section-hello{
+	box-sizing: border-box;
+}
+
+.about-me{
+	background-color:rgb(26, 25, 25);
+	box-sizing: border-box;
+	min-height:80vh;
+	margin-left:40%;
+	margin-right:60%;
+	margin-top:100px;
+	margin-bottom:50px;
+	border-radius: 10px;
+	min-width: 100vh;
+
+	text-align: center;
+}
+.about-me h1{
+	text-align: center;
+	padding-top: 30%;
+	color:white;
+}
+
+.about-me p{
+	color: gray;
+	padding-top: 30%;
+	text-align: center;
+}
+#astronaut-hello{
+	float:right;
+	margin-left:-10%;
+
+
+	
+
+}
+#svg-hi{
+	width: 700px;
+	height:700px;
+}
+
+
+#R-wrist{
+	animation: astronaut-wrist-hi 0.65s  alternate-reverse infinite;
+  transform-origin: 50% 90%;
+
+}
+	@keyframes astronaut-wrist-hi {
+		0% {transform: rotate(-2deg);}
+  100% {transform: rotate(0deg);}
+	  }
+#R-Palm{
+
+  animation: astronaut-palm-hi 0.65s  alternate-reverse infinite;
+  transform-origin: 50% 90%;
+
+}
+	@keyframes astronaut-palm-hi {
+		0% {transform: rotate(-3deg);}
+  100% {transform: rotate(0deg);}
+	}
+
+#Group-1{
+	animation: astronaut-hu ;
+	animation-duration: 7s;
+	animation-iteration-count:infinite;
+}
+@keyframes astronaut-hu {
+	0% {
+		transform: translate3D(0px, 0px, 0);
+	  }
+	25% {
+		transform: translate3D(0px, -20px, 0);
+	  }
+	50% {
+		transform: translate3D(30px, 10px, 0);
+	  }
+	  75% {
+		transform: translate3D(20px, -20px, 0);
+	  }
+	  1000% {
+		transform: translate3D(30px, -50px, 0);
+	  }
+}
