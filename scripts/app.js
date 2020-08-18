@@ -4,8 +4,8 @@ $(document).ready(function() {
         direction: 'vertical',
         verticalCentered: true,
         anchors: ['section-hello', 'section-about-me'],
-        scrollingSpeed:700,
-        easing: 'linear',
+        scrollingSpeed:1000,
+        easing: 'swing',
         loopBottom: false,
         loopTop: false,
         css3: false,
@@ -15,8 +15,8 @@ $(document).ready(function() {
             'position': 'right',
             'tooltips': ['Hello', 'About Me']
         },
-       	normalScrollElements:'#section-hello',
-        normalScrollElementTouchThreshold: 3,
+       
+        normalScrollElementTouchThreshold: 1,
         touchSensitivity: 5,
         keyboardScrolling: true,
         sectionSelector: '.section',
