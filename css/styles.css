@@ -5,49 +5,57 @@ body {
   background-color: rgb(26, 25, 25);
   font-family: 'Andika';
 }
+.pp-tableCell {
+	vertical-align: top;
+}
 #section-hello{
-	z-index: 0;
+	z-index: -2;
 	background-color:rgb(26, 25, 25);
 	width:100%;
-	height:100%;
-	padding-top: 10px;
-
+	height:100vh;
+	
+}
+#hello-cell{
+	height:100vh;
+	position: fixed;
 }
 #video-stars{
-	margin-top: -100px;
-	position: fixed;
+	
+	position: absolute;
 	display: flex;
-	padding-top:-10px;
+	float: center;
+	
 	object-fit: cover;
 	width:100%;
-	height:100vh;
+	height:100%;
 	overflow: hidden;
-	z-index: -1;
+	z-index: -2;
 
 }
 #section-about-me{
-	margin-top:50px;
+	height:100vh;
 	background-color:black;
 	position:relative;
 	display: block;
 	width:100%;
-	height:100%;
+	
 
 	
 }
 
 #header-nav{
-	background-color: black;
+	background-color: rgb(26, 25, 25);
 	border-bottom :1px;
 	border-bottom-style: solid;
 	border-radius: 0;
 	width:100%;
 	height: 60px;
-	margin-top:-20px;
 	border: 0;
-	position: fixed;
-	padding-top:10px;
+	z-index: 2;
+	position: absolute;
+
 }
+      
 
  #Contact-tile{
 	
@@ -62,7 +70,7 @@ body {
 	opacity:.8;
 	margin-bottom: 10px;
 	margin-right: 20px;
-	font-family: 'Covered By Your Grace';
+	font-family: 'Andika';
 }
 
 #Name-tile{
@@ -80,17 +88,17 @@ body {
 
 }
 .background-hello{
-	background-color:#090013;
+	background-color:0000;
 	box-sizing: border-box;
 	min-height:80vh;
 	margin-left:40px;
 	max-width:60%;
 	border-radius: 10px;
-	margin-top: -10px;
+	margin-top:8%;
 	float:left;
 	padding: 40px;
 	z-index: 99999;
-	
+
 }
 
 .background-hello h1{
@@ -137,17 +145,14 @@ body {
 }
 #astronaut-hello{
 	z-index: 100;
-	
+	margin-top: 8%;
 	float:right;
 	margin-left:-10%;
 
-
-	
-
 }
 #svg-hi{
-	width: 700px;
-	height:700px;
+	width: 600px;
+	height:600px;
 }
 #github-icon{
 	font-size:48px;
