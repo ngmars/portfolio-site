@@ -9,6 +9,7 @@ body {
 	vertical-align: top;
 }
 #section-hello{
+	
 	z-index: -2;
 	background-color:rgb(26, 25, 25);
 	width:100%;
@@ -16,7 +17,9 @@ body {
 	
 }
 #hello-cell{
+	margin-top:3%;
 	height:100vh;
+	margin-top:10vh;
 	position: fixed;
 }
 #video-stars{
@@ -38,9 +41,6 @@ body {
 	position:relative;
 	display: block;
 	width:100%;
-	
-
-	
 }
 
 #header-nav{
@@ -90,14 +90,14 @@ body {
 .background-hello{
 	background-color:0000;
 	box-sizing: border-box;
-	min-height:80vh;
+	min-height:70vh;
 	margin-left:40px;
 	max-width:60%;
 	border-radius: 10px;
-	margin-top:8%;
+	
 	float:left;
-	padding: 40px;
-	z-index: 99999;
+	padding: 0;
+	z-index: 50;
 
 }
 
@@ -111,7 +111,7 @@ body {
 .background-hello p{
 	color: gray;
 	text-align: center;
-	font-size:30px;
+	font-size:3vh;
 }
 .section-hello{
 	box-sizing: border-box;
@@ -121,8 +121,7 @@ body {
 	background-color:rgb(26, 25, 25);
 	box-sizing: border-box;
 	min-height:80vh;
-	margin-left:40%;
-	margin-right:60%;
+	
 	margin-top:100px;
 	margin-bottom:50px;
 	border-radius: 10px;
@@ -145,14 +144,15 @@ body {
 }
 #astronaut-hello{
 	z-index: 100;
-	margin-top: 8%;
+	top: 20%;
 	float:right;
-	margin-left:-10%;
+
+	margin-top:3%;
 
 }
 #svg-hi{
-	width: 600px;
-	height:600px;
+	width: 80vh;
+	height:80vh;
 }
 #github-icon{
 	font-size:48px;
@@ -260,4 +260,22 @@ body {
 	  1000% {
 		transform: translate3D(30px, -50px, 0);
 	  }
+}
+/*############################################################################
+Experience Flip Cards
+################################################################################# */
+.mainContainer{
+	position:relative;
+	width: 250px;
+	height:320px;
+	border: green;
+}
+
+.theCard{
+	position: absolute;
+	width: 250px;
+	height:320px;
+	transform-style: preserve-3d;
+	transition: all 0.5s ease;
+	background: yellow;
 }
