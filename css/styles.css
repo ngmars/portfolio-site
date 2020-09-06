@@ -44,7 +44,8 @@ body {
 }
 
 #header-nav{
-	background-color: rgb(26, 25, 25);
+	/*background-color: rgb(26, 25, 25);*/
+	background-color: black;
 	border-bottom :1px;
 	border-bottom-style: solid;
 	border-radius: 0;
