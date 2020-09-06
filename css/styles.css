@@ -119,10 +119,11 @@ body {
 }
 
 .about-me{
-	background-color:rgb(26, 25, 25);
-	box-sizing: border-box;
-	min-height:80vh;
-	width:70%;
+	/*background-color:rgb(26, 25, 25);*/
+	background: rgb(255,201,80);
+background: linear-gradient(0deg, rgba(255,201,80,0.676908263305322) 0%, rgba(255,216,150,0.7441351540616247) 0%, rgba(230,120,255,0.6208858543417367) 0%, rgba(89,0,135,0.6909138655462185) 19%, rgba(27,0,41,0.6965161064425771) 46%, rgba(0,0,0,1) 100%);
+
+	height:80vh;
 	margin-left:15%;
 	margin-right:15%;
 	margin-top:10vh;
