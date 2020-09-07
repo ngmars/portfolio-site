@@ -403,7 +403,7 @@ Experience Flip Cards
 ROCKET
 *************************************************************************************************************/
 .canvas {
-	position: fixed;
+	position: absolute;
 	width: 580px;
 	height: 400px;
 	margin-top: 20vh;
@@ -459,3 +459,40 @@ ROCKET
 	  offset-distance: -100%;
 	}
   }
+  #Flame-out{
+	animation: fire-out 1s ease-in-out infinite alternate;
+	transform-origin: top;
+}
+#flame-middle{
+	animation: fire-middle 1s ease-in-out infinite alternate;
+	transform-origin: top;
+}
+#flame-in{
+	animation: fire-in 1s ease-in-out infinite alternate;
+	transform-origin: top;
+}
+
+@keyframes fire-out {
+	
+
+	  25% {
+		transform: translate3D(-5px, 10px, 0);
+	  }
+	  
+}
+@keyframes fire-middle {
+	
+
+	75% {
+	  transform: translate3D(-5px, 10px, 0);
+	}
+	
+}
+@keyframes fire-in {
+	
+
+	50% {
+	  transform: translate3D(-5px, 10px, 0);
+	}
+	
+}
