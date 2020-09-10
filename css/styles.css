@@ -283,125 +283,52 @@ Experience Flip Cards
 	margin-left:3%;
 	color: #fff;
 }
-#ams-flip-card {
-	background-color: transparent;
-	width: 25%;
-	height: 70vh;
-	perspective: 1000px;
-	margin-top: 5vh;
-	margin-bottom: 15vh;
-	margin-left: 20%;
-	float: left;
-  }
-  
-  #ams-flip-card-inner {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	transition: transform 0.6s;
-	transform-style: preserve-3d;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	padding-top: 0;
-  }
-  
-  #ams-flip-card:hover #ams-flip-card-inner {
-	transform: rotateY(180deg);
-  }
-  
-  #ams-flip-card-front, #ams-flip-card-back {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-  }
-  
-  #ams-flip-card-front {
-	background-color: #E5446D;
-	color: black;
-  }
-  
-  #ams-flip-card-back {
-	background-color: #2980b9;
+
+#ams{
+	width: 45%;
+	height:70vh;
+	border: 2px dashed grey;
+	border-radius: 50px;
+	margin-left:2.5%;
+	float:left;
+	
+}
+#ams-logo{
+	margin-left:30%;
+	margin-top:1vh;
+	width: 40%;
+	height:40%;
+	
+}
+#sup{
+	width: 45%;
+	height:70vh;
+	border: 2px dashed grey;
+	border-radius: 50px;
+	margin-right:2.5%;
+	float:right
+
+}
+.exp-text{
+	margin-left:3%;
+	font-size:2vh;
 	color: white;
-	transform: rotateY(180deg);
-  }
-  
-  #ams-logo-holder{
-	background-color: #F4EBD9;
-	height: 40%;
-	width:100%;
-	outline:2px dashed black;
-	outline-offset: -10px;
-
-
-  }
-  #ams-logo{
-	margin-top: 2vh;
-	width:80%;
-	height:80%;
-  }#sp-flip-card {
-	background-color: transparent;
-	width: 25%;
-	height: 70vh;
-	perspective: 1000px;
-	margin-top: 5vh;
-	margin-bottom: 15vh;
-	margin-left: 10%;
-	margin-right:10%;
-	float: left;
-  }
-  
-  #sp-flip-card-inner {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	transition: transform 0.6s;
-	transform-style: preserve-3d;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	padding-top: 0;
-  }
-  
-  #sp-flip-card:hover #sp-flip-card-inner {
-	transform: rotateY(180deg);
-  }
-  
-  #sp-flip-card-front, #sp-flip-card-back {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-  }
-  
-  #sp-flip-card-front {
-	background-color: #28AFB0;
-	color: black;
-  }
-  
-  #sp-flip-card-back {
-	background-color: #2980b9;
+}
+.exp-text a{
 	color: white;
-	transform: rotateY(180deg);
-  }
-  
-  #sp-logo-holder{
-	background-color: #E7E5E5;
-	height: 40%;
-	width:100%;
-	outline:2px dashed black;
-	outline-offset: -10px;
-
-
-
-  }
-  #ams-logo{
-	margin-top: 2vh;
-	width:80%;
-	height:80%;
-  }
+}
+#bullets{
+	margin-left:3%;
+	font-size:2vh;
+	color: white;
+	list-style-image: url('../IMAGES/meteor.svg');
+	margin-right:3%;
+}
+#sup-logo{
+	margin-left:35%;
+	height:40%;
+	width:40%
+}
 
 /********************************************************************************************************************************************************************************************************************
 ROCKET
@@ -606,7 +533,7 @@ GITHUB REPO'S
 
 #github-meteor:hover{
 	animation-name: spin;
-  animation-duration: 2000ms;
+  animation-duration: 4000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear; 
 }

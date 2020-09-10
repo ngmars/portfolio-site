@@ -1,0 +1,25 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201.85 45.65">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 42px;
+        fill: #009fe3;
+        font-family: MyriadPro-Regular, Myriad Pro;
+        letter-spacing: -0.02em;
+      }
+
+      .cls-2 {
+        letter-spacing: -0.04em;
+      }
+
+      .cls-3 {
+        letter-spacing: -0.03em;
+      }
+
+      .cls-4 {
+        letter-spacing: -0.02em;
+      }
+    </style>
+  </defs>
+  <text class="cls-1" transform="translate(0 35.15) scale(0.89 1)">Super<tspan class="cls-2" x="98.32" y="0">P</tspan><tspan class="cls-3" x="119.15" y="0">r</tspan><tspan class="cls-4" x="131.63" y="0">ocu</tspan><tspan class="cls-3" x="194.12" y="0">r</tspan><tspan class="cls-4" x="206.6" y="0">e</tspan></text>
+</svg>
