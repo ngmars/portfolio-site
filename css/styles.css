@@ -286,7 +286,8 @@ Experience Flip Cards
 
 #ams{
 	width: 45%;
-	height:70%;
+	height:wrap;
+	min-height:70vh;
 	border: 2px dashed grey;
 	border-radius: 50px;
 	margin-left:2.5%;
@@ -296,17 +297,19 @@ Experience Flip Cards
 #ams-logo{
 	margin-left:30%;
 	margin-top:1vh;
-	width: 40%;
-	height:40%;
+	width: 25vh;
+	height:25vh;
 	
 }
 #sup{
 	width: 45%;
-	height:70vh;
+
 	border: 2px dashed grey;
 	border-radius: 50px;
 	margin-right:2.5%;
-	float:right
+	float:right;
+	min-height:70vh;
+	height:wrap;
 
 }
 .exp-text{
@@ -326,12 +329,12 @@ Experience Flip Cards
 }
 #sup-logo{
 	margin-left:35%;
-	height:40%;
-	width:40%
+	width: 25vh;
+	height:25vh;
 }
 #ams:hover, #sup:hover{
-background: rgb(0,0,0);
-background: linear-gradient(6deg, rgba(0,0,0,0) 0%, rgba(133,133,133,0.20211834733893552) 100%);
+	background: rgb(0,0,0);
+background: linear-gradient(6deg, rgba(0,0,0,0) 0%, rgba(133,133,133,0.396796218487395) 100%);
 }
 /********************************************************************************************************************************************************************************************************************
 ROCKET
