@@ -336,6 +336,11 @@ Experience Flip Cards
 	background: rgb(0,0,0);
 background: linear-gradient(6deg, rgba(0,0,0,0) 0%, rgba(133,133,133,0.396796218487395) 100%);
 }
+#timeline{
+	float:right;
+	margin-right:20px;
+	font-weight:bolder;
+}
 /********************************************************************************************************************************************************************************************************************
 ROCKET
 *********************************************************************************************************************************************************************************************************************/
@@ -566,5 +571,69 @@ ACHIEVEMENTS
 #ach-ele{
 	height:100vh;
 	width:100%;
-	margin
+}
+.achive-ele{
+	min-height: 70vh;
+	height:wrap;
+	width: 30%;
+	border: 2px dashed grey;
+	float:left;
+	border-radius: 50px;
+
+}
+#vit-ach{
+	margin-left:2%;
+}
+#dev-ach{
+	margin-left:2%;
+}
+#mun-ach{
+	margin-left:2%;
+}
+#ach-logo{
+	margin-top:10vh;
+	width:100%;
+	min-height:30vh;
+	height:wrap;
+}
+#VIT-logo{
+
+	width:40%;
+
+	margin-left:30%;
+	margin-right:30%;
+}
+#DEV-logo{
+
+	width:60%;
+	margin-top:10vh;
+	margin-left:20%;
+	margin-right:20%;
+}
+#MUN-logo{
+	width:80%;
+	margin-top:5vh;
+	border-radius: 5px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#ach-text{
+
+	margin-left:5%;
+	margin-right:5%;
+	font-size:120%;
+	color: white;
+}
+
+#vit-ach:hover{
+	background: rgb(0,0,0);
+background: linear-gradient(315deg, rgba(0,0,0,0) 0%, rgba(104,0,255,0.29315476190476186) 100%);
+}
+#dev-ach:hover{
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,255,250,0.29315476190476186) 100%);
+}
+#mun-ach:hover{
+background: rgb(0,0,0);
+background: linear-gradient(52deg, rgba(0,0,0,0) 0%, rgba(255,0,243,0.29315476190476186) 100%);
 }
