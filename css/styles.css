@@ -121,19 +121,29 @@ body {
 	height:10vh;
 	margin-left: 2%;
 }
-#javascript-logo, #keras-logo,#tensorflow-logo{
+#javascript-logo, #keras-logo,#tensorflow-logo, #html-logo, #css-logo, #nodeJS-logo, #php-logo, #python-logo, #c-logo, #cpp-logo, #arduino-logo{
 	height:8vh;
 
+}
+#video-stars-about-me{
+
+
+	position:absolute;
+	object-fit: cover;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	z-index: -2;
 }
 .about-me{
 	/*background-color:rgb(26, 25, 25);*/
 	
-	min-height:80vh;
+	min-height:90vh;
 	height:wrap;
 	margin-left:15%;
 	margin-right:15%;
 	margin-top:10vh;
-	margin-bottom: 10vh;
+	margin-bottom: 5vh;
 	border-radius: 10px;
 	min-width: 70%;
 	z-index: 200;
@@ -699,8 +709,9 @@ Contact Me
 	color:white;
 }
 #contact-phone{
-	margin-left:10px;
-	width: 5%;
+	margin-left:2%;
+	height:10vh;
+
 	
 }
 #where-to-mail{
