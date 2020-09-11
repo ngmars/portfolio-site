@@ -589,7 +589,7 @@ ACHIEVEMENTS
 	border: 2px dashed grey;
 	float:left;
 	border-radius: 50px;
-
+	padding-bottom: 3vh;
 }
 #vit-ach{
 	margin-left:2%;
