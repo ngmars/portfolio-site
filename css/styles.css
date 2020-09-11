@@ -125,16 +125,7 @@ body {
 	height:8vh;
 
 }
-#video-stars-about-me{
 
-
-	position:absolute;
-	object-fit: cover;
-	width:100%;
-	height:100%;
-	overflow: hidden;
-	z-index: -2;
-}
 .about-me{
 	/*background-color:rgb(26, 25, 25);*/
 	
@@ -187,7 +178,7 @@ body {
 	color:red;
 }
 .icons8-github { 
-	margin-left:30%;
+	margin-left:38%;
 	display: inline-block;
 	width: 60px;
 	height: 60px;
@@ -324,8 +315,9 @@ Experience Flip Cards
 #ams-logo{
 	margin-left:30%;
 	margin-top:1vh;
-	width: 25vh;
-	height:25vh;
+	width: 40%;
+	height:25vh
+
 	
 }
 #sup{
@@ -355,9 +347,10 @@ Experience Flip Cards
 	margin-right:3%;
 }
 #sup-logo{
-	margin-left:35%;
-	width: 25vh;
+	margin-left:30%;
+	width: 40%;
 	height:25vh;
+
 }
 #ams:hover, #sup:hover{
 	background: rgb(0,0,0);
