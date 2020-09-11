@@ -117,33 +117,48 @@ body {
 .section-hello{
 	box-sizing: border-box;
 }
+.skill-logo{
+	height:10vh;
+	margin-left: 2%;
+}
+#javascript-logo, #keras-logo,#tensorflow-logo{
+	height:8vh;
 
+}
 .about-me{
 	/*background-color:rgb(26, 25, 25);*/
-	background: rgb(255,201,80);
-	background: linear-gradient(0deg, rgba(255,201,80,0.676908263305322) 0%, rgba(255,216,150,0.7441351540616247) 7%, rgba(230,120,255,0.6208858543417367) 19%, rgba(101,0,153,0.6909138655462185) 35%, rgba(27,0,41,0.6965161064425771) 57%, rgba(0,0,0,0.6096813725490196) 100%);
-	height:80vh;
+	
+	min-height:80vh;
+	height:wrap;
 	margin-left:15%;
 	margin-right:15%;
 	margin-top:10vh;
 	margin-bottom: 10vh;
 	border-radius: 10px;
-	min-width: 100vh;
+	min-width: 70%;
 	z-index: 200;
-	text-align: center;
+	/*background: rgb(255,175,0);
+	background: linear-gradient(6deg, rgba(255,175,0,1) 0%, rgba(230,197,0,0.6558998599439776) 3%, rgba(104,55,164,0.6278886554621849) 13%, rgba(76,11,117,0.6138830532212884) 38%, rgba(0,0,0,0.5998774509803921) 100%);*/
+	border:3px dashed gray;
 }
-.about-me h1{
+
+
+#heading-about-me{
 	text-align: center;
 	vertical-align: center;
-	padding-top: 20%;
+
+	margin-bottom: 3vh;
 	color:white;
-	font-size: 50px;
+	font-size: 7vh;
 }
 
-.about-me p{
-	color: gray;
-
-	text-align: center;
+#points-about-me{
+	margin-left:3%;
+	margin-top:5vh;
+	font-size:120%;
+	color: white;
+	list-style-image: url('../IMAGES/meteor.svg');
+	margin-right:3%;
 }
 #astronaut-hello{
 	z-index: 100;
@@ -270,7 +285,8 @@ Experience Flip Cards
 #experience-element{
 	width:100%;
 	height:100vh;
-	position: block;
+	position: inline-block;
+	margin-top:10vh;
 }
 
 #experience-tag{
