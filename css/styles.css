@@ -533,18 +533,24 @@ GITHUB REPO'S
 	margin-bottom:3%;
 }
 #project-pg{
-	height:100vh;
+	display:inline-block;
+	min-height:100vh;
+	height:wrap;
 	width:100%;
-
-
+	margin-top:5vh;
 }
 #github-meteor{
-
+	vertical-align: middle;
+	display:inline-block;
 	margin-left:7%;
 	margin-top:5vh;
 	height:30%;
 	width:30%;
 	
+}
+#proj-cont{
+	width:wrap;
+	height:inherit;
 }
 
 #github-meteor:hover{
@@ -569,8 +575,12 @@ GITHUB REPO'S
 ACHIEVEMENTS
 *************************************************************************************************************************************************************************/
 #ach-ele{
-	height:100vh;
+	
+	display:inline-block;
+	min-height:100vh;
+	height:wrap;
 	width:100%;
+	margin-top:5vh;
 }
 .achive-ele{
 	min-height: 70vh;
