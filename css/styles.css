@@ -142,6 +142,11 @@ body {
 	background: linear-gradient(6deg, rgba(255,175,0,1) 0%, rgba(230,197,0,0.6558998599439776) 3%, rgba(104,55,164,0.6278886554621849) 13%, rgba(76,11,117,0.6138830532212884) 38%, rgba(0,0,0,0.5998774509803921) 100%);*/
 	border:3px dashed gray;
 }
+.about-me:hover{
+	outline: none;
+    border-color: #ff09e1;
+    box-shadow: 0 0 10px #ff09e1;
+}
 
 
 #heading-about-me{
