@@ -455,9 +455,13 @@ GITHUB REPO'S
 	border:1px solid darkgray;
 	float:left;
 }
-.fullelement:hover{
-	background-color: #008d36;
-
+#one-git:hover,#two-git:hover,#four-git:hover{
+	background: rgb(0,40,15);
+	background: linear-gradient(52deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,141,54,0.6951155462184874) 100%);
+}
+#three-git:hover,#five-git:hover,#six-git:hover{
+	background: rgb(0,40,15);
+background: linear-gradient(308deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,141,54,0.6951155462184874) 100%);
 }
 .repo-img{
 	margin-top:3%;
@@ -691,8 +695,8 @@ Contact Me
 }
 #mail-box{
 	float:right;
-	height: 30vh;
-	margin-top:25vh;
+	height: 60vh;
+	margin-top:12.5vh;
 	margin-right:15vh;
 }
 #linkedin-icon-contact-me:hover{
