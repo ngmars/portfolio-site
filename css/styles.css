@@ -292,6 +292,7 @@ Experience Flip Cards
 	border-radius: 50px;
 	margin-left:2.5%;
 	float:left;
+	padding-bottom: 2vh;
 	
 }
 #ams-logo{
@@ -310,7 +311,7 @@ Experience Flip Cards
 	float:right;
 	min-height:70vh;
 	height:wrap;
-
+	padding-bottom: 2vh;
 }
 .exp-text{
 	margin-left:3%;
