@@ -184,7 +184,7 @@ navbar-dark{
 		font-family: 'Andika';
 	}
 	#svg-hi{
-	
+		z-index: 10;
 		height:40vh;
 	}
 	#initSection{
@@ -227,7 +227,7 @@ navbar-dark{
 		font-family: 'Andika';
 	}
 	#svg-hi{
-		
+		z-index: 10;
 		height:80vh;
 	}
 	#initSection{
@@ -610,7 +610,7 @@ ROCKET
   }
   @media only screen   
   and (min-device-width : 768px)   
-  and (max-device-width : 1204px){
+  and (max-device-width : 1024px){
 	.card {
 		position: relative;
 		text-align: left;
@@ -619,12 +619,13 @@ ROCKET
 		border: 1px solid;
 		border-color: transparent transparent transparent transparent;
 		border-radius: 8px;
-		width: 30vw;
-		max-width: 30vw;
+		width: wrap;
+		max-width: 98vw;
 		height:wrap;
-		min-height:110vh;
+		min-height:40vh;
 		padding-left:0.5vw;
 		margin-left:1vw;
+		margin-right:1vw;
 		margin-top:5vh;
 	}
 	
@@ -638,7 +639,7 @@ ROCKET
 		height:15vw;
 		margin: auto;
 		border: 1px solid white;
-		margin-top: -15vh;
+		margin-top: -8vh;
 	}
 	.card .user-img-sp {
 		
@@ -647,16 +648,16 @@ ROCKET
 		width: 15vw;
 		border-radius: 50%;
 		height:15vw;
-		padding-top:8.5vh;
+		padding-top:4.5vh;
 		margin: auto;
 		border: 1px solid white;
-			margin-top: -15vh;
+			margin-top: -8vh;
 			
 	}
 	#bullets{
 		margin-left:3%;
 		font-size:1em;
-		color: white;
+		color: #d3d3d3;
 		list-style-image: url('../IMAGES/meteor.svg');
 		margin-right:3%;
 	}
@@ -669,7 +670,7 @@ ROCKET
 		height:15vw;
 		margin: auto;
 		border: 1px solid white;
-			margin-top: -15vh;
+			margin-top: -8vh;
 	}
 	
 	#acumensa-img{
@@ -680,7 +681,7 @@ ROCKET
 
   }
   
-  @media only screen and (min-width:1204px) {.card {
+  @media only screen and (min-width:1024px) {.card {
     position: relative;
     text-align: left;
     color: #d3d3d3;
@@ -689,10 +690,8 @@ ROCKET
 	font-size: 1em;
     border-color: transparent transparent transparent transparent;
     border-radius: 8px;
-    width: 30vw;
-    max-width: 30vw;
 	height:wrap;
-	min-height: 65vh;
+	min-height: 55vh;
 	padding-left:0.5vw;
 	margin-left:1vw;
 	margin-top:5vh;
@@ -701,11 +700,14 @@ ROCKET
 #bullets{
 	margin-left:3%;
 	font-size:1vw;
-	color: white;
+	color:  #d3d3d3;
 	list-style-image: url('../IMAGES/meteor.svg');
 	margin-right:3%;
 }
-
+#ams-text{
+	font-size:1vw;
+	color:  #d3d3d3;
+}
 .card .user-img {
     background-image: url("./AMS\ logo.svg");
     background-size: contain;
@@ -1254,12 +1256,12 @@ Achievements
 		margin-bottom:5vh
 	}
 }
-@media only screen   
-  and (min-device-width : 563px)   
-  and (max-device-width : 1024px){
-	
+@media only screen and (min-width: 563px)and (max-width: 1024px) {
+	#vit-ach{
+		margin-bottom:5vh
+	}
 	.achive-ele{
-		min-height: 100vh;
+		min-height: 80vh;
 		height:wrap;
 		border: 2px solid grey;
 		float:left;
@@ -1273,8 +1275,14 @@ Achievements
 		font-size:120%;
 		color: white;
 	}
+	#dev-ach{
+		margin-bottom:5vh
+	}
+	#mun-ach{
+		margin-bottom:5vh
+	}
   }
-  @media only screen and (min-device-width : 1025px){
+  @media only screen and (min-width : 1024px){
 	
 	.achive-ele{
 		min-height: 70vh;
@@ -1495,7 +1503,7 @@ Contact ME
 	}
 	#mail-box{
 		margin-right: 2vw;
-		height: 18vh
+		height: 18vw
 	}
 }
 
