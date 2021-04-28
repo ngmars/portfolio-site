@@ -930,7 +930,7 @@ Achievements
 	margin-top:5vh;
 }
 .achive-ele{
-	min-height: 70vh;
+	min-height: 75vh;
 	height:wrap;
 	border: 2px solid grey;
 	float:left;
@@ -992,4 +992,62 @@ background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,255,250,0.29315476190
 #mun-ach:hover{
 background: rgb(0,0,0);
 background: linear-gradient(52deg, rgba(0,0,0,0) 0%, rgba(255,0,243,0.29315476190476186) 100%);
+}
+
+/***************************************************************************
+Contact ME
+****************************************************************************/
+#contact{
+	height:wrap;
+    min-height:60vh;
+    width: 100vw;
+
+    background-image: var(--bg);
+    position: relative;
+	background-color: black;
+	background-position: center;
+}
+#contact-title{
+	float:left;
+	color:#d3d3d3;
+	margin-left:3vw;
+	font-size: 4em;
+	position: absolute;
+}
+#about-contact-me{
+	text-transform: uppercase;
+	margin-left:4vw;
+	margin-top: 2vh;
+	color:#d3d3d3;
+	font-size: 2em;
+}
+#hit-me-up{
+	margin-left:4vw;
+	margin-right:10vh;
+	color:#d3d3d3;
+	font-size: 2em;
+}
+#where-to-mail{
+
+	margin-left:4vw;
+	margin-top:5vh;
+	color:#d3d3d3;
+	font-size: 2em;
+}
+#emailId{
+	
+	font-size: 1.25em;
+	font-weight: 700;
+	color:#d3d3d3;
+}
+#emailId:hover{
+	color:rgb(255, 83, 64);
+}
+#linkedin-icon-contact-me:hover{
+	border:1px solid #0288D1;
+	border-radius: 40px;
+}
+#mail-box{
+	margin-right: 2vw;
+	height: 30vh
 }
