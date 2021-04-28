@@ -278,6 +278,12 @@ Experience
 	background-color: black;
 	background-position: center;
 }
+
+#exp-title{
+	float:left;
+	color:#d3d3d3;
+	font-size: 3em;
+}
 /********
 ROCKET
 *********/
@@ -404,7 +410,7 @@ ROCKET
     height:15vw;
     margin: auto;
     border: 1px solid white;
-    margin-top: -20vh;
+    margin-top: -15vh;
 }
 .card .user-img-sp {
     
@@ -415,7 +421,7 @@ ROCKET
     height:15vw;
     margin: auto;
     border: 1px solid white;
-    margin-top: -135px;
+        margin-top: -15vh;
 }
 .card .user-img-acumensa {
     
@@ -426,7 +432,7 @@ ROCKET
     height:15vw;
     margin: auto;
     border: 1px solid white;
-    margin-top: -135px;
+        margin-top: -15vh;
 }
 
 #acumensa-img{
