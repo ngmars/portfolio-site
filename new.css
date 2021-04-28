@@ -384,7 +384,7 @@ ROCKET
     border-radius: 8px;
     width: 30vw;
     max-width: 30vw;
-	height:70vh;
+	height:75vh;
 	padding-left:0.5vw;
 	margin-left:1vw;
 }
@@ -509,12 +509,67 @@ border-radius:30px;
 	text-decoration:none;
 	background-color: rgb(251 97 7/ 90%);
 }
+#exp-django{
+		
+      
+	margin:0px 20px 8px 0px;
+	color:white;
+	display:block;
+	border-radius:30px;
+	padding:10px 10px 8px ;
+	position:relative;
+	float:left;
+	text-decoration:none;
+	background-color: rgb(2 60 64/ 90%);
+}
+#exp-react{
+		
+      
+	margin:0px 20px 8px 0px;
+	color:white;
+	display:block;
+	border-radius:30px;
+	padding:10px 10px 8px ;
+	position:relative;
+	float:left;
+	text-decoration:none;
+	background-color: rgb(237 106 94/ 90%);
+}
+#exp-postgres{
+		
+      
+	margin:0px 20px 8px 0px;
+	color:white;
+	display:block;
+	border-radius:30px;
+	padding:10px 10px 8px ;
+	position:relative;
+	float:left;
+	text-decoration:none;
+	background-color: rgb(76 224 179/ 90%);
+}
+#exp-gcp{
+		
+      
+	margin:0px 20px 8px 0px;
+	color:white;
+	display:block;
+	border-radius:30px;
+	padding:10px 10px 8px ;
+	position:relative;
+	float:left;
+	text-decoration:none;
+	background-color: rgb(202 168 245/ 90%);
+}
+
+
+
 
 
 
 #bullets{
 	margin-left:3%;
-	font-size:1.125em;
+	font-size:1.1em;
 	color: white;
 	list-style-image: url('../IMAGES/meteor.svg');
 	margin-right:3%;
