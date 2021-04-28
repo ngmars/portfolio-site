@@ -2,11 +2,12 @@
 	--bg: url('./IMAGES/stars.jpeg');
 	--bgColor:
   }
+
 #about {
     height:wrap;
     min-height:95vh;
     width: 100vw;
-	overflow-y: hidden;
+	overflow-y: auto;
     background-image: var(--bg);
     position: relative;
 	background-color: black;
@@ -61,14 +62,7 @@ navbar-dark{
 }
 
 
-#heading-about-me{
-	text-align: center;
-	vertical-align: center;
 
-	margin-bottom: 3vh;
-	color:#d3d3d3;
-	font-size: 7vh;
-}
 #section-about-me{
 	height:100vh;
 	background-color:black;
@@ -89,6 +83,26 @@ navbar-dark{
 	z-index: 50;
 
 }
+#gmail-hello{
+	color:#5e6472;
+	margin-right:1vw;
+	margin-left:1vw;
+}
+#gmail-hello:hover{
+	color:rgb(255, 42, 42)
+}
+#linkedIn-hello{
+	color:#5e6472
+}
+#linkedIn-hello:hover{
+	color:rgb(19, 23, 255)
+}
+#github-hello{
+	color:#5e6472
+}
+#github-hello:hover{
+	color:#1ABC9C
+}
 .background-hello h1{
 	text-align: center;
 	padding-top:5%;
@@ -96,30 +110,14 @@ navbar-dark{
 	font-size:60px;
 
 }
-#gen-about-me{
-	color: gray;
-	text-align: left;
-	font-size:3vh;
-	margin-left: 3vw;
-}
+
 .section-hello{
 	box-sizing: border-box;
 }
 
 
 
-#astronaut-hello{
-	z-index: 100;
-	top: 20%;
-	float:right;
 
-	margin-top:3%;
-
-}
-#svg-hi{
-	width: 50vw;
-	height:80vh;
-}
 #github-icon{
 	font-size:48px;
 	color:red;
@@ -167,6 +165,51 @@ navbar-dark{
 	border:1px solid #0288D1;
 	border-radius: 40px;
 }
+
+@media only screen and (max-width: 563px) {
+	#Resume-hello{
+		min-width: 20vw;
+		min-height: 5vh;
+		width:wrap;
+		width:wrap;
+		border: 1px solid  rgb(255, 83, 64);
+		border-radius: 30px;
+		background-color: rgb(255, 83, 64);
+
+		text-align: center;
+		outline: none;
+		cursor: grab;
+		color:#d3d3d3;
+		font-size:22px;
+		font-family: 'Andika';
+	}
+	#svg-hi{
+	
+		height:40vh;
+	}
+	#initSection{
+		margin-top: 5vh;
+	}
+	#heading-about-me{
+		text-align: center;
+		vertical-align: center;
+	
+		margin-bottom: 3vh;
+		color:#d3d3d3;
+		font-size: 3vh;
+	}
+	#gen-about-me{
+		color: gray;
+		text-align: left;
+		font-size:2vh;
+		margin-left: 3vw;
+	}
+	
+	#astro-skills{
+		display: none;
+	}
+}
+@media only screen and (min-width: 563px) {
 	#Resume-hello{
 		min-width: 10vw;
 		min-height: 5vh;
@@ -175,7 +218,7 @@ navbar-dark{
 		border: 1px solid  rgb(255, 83, 64);
 		border-radius: 30px;
 		background-color: rgb(255, 83, 64);
-		margin-left: 10vw ;
+
 		text-align: center;
 		outline: none;
 		cursor: grab;
@@ -183,6 +226,41 @@ navbar-dark{
 		font-size:22px;
 		font-family: 'Andika';
 	}
+	#svg-hi{
+		width: 50vw;
+		height:80vh;
+	}
+	#initSection{
+		margin-top: 25vh;
+	}
+	#heading-about-me{
+		text-align: center;
+		vertical-align: center;
+	
+		margin-bottom: 3vh;
+		color:#d3d3d3;
+		font-size: 7vh;
+	}
+	#gen-about-me{
+		color: gray;
+		text-align: left;
+		font-size:3vh;
+		margin-left: 3vw;
+	}
+	#astronaut-hello{
+		z-index: 100;
+		top: 20%;
+		
+	
+		margin-top:3%;
+	
+	}
+	#astro-skills{
+		margin-left:6vw;
+		width:30vw;
+		height:80vh}
+}
+	
 	#Resume-hello:hover{
 		color: black;
 	}
@@ -324,7 +402,14 @@ ROCKET
 	  width:150px;
 	  transform: rotate(180deg);
   }
-  
+  @media only screen and (max-width: 563px) {
+	#rocket{
+		display:none;
+	}
+	.canvas{
+		display:none;
+	}
+  }
   
   @keyframes sweep {
 	0% {
@@ -387,8 +472,129 @@ ROCKET
 	
 }
 
+@media only screen and (max-width: 563px) {
+	.card {
+		position: relative;
+		text-align: left;
+		color: #d3d3d3;
+		background-color: rgb(142 142 142 / 30%);
+		border: 1px solid;
+		border-color: transparent transparent transparent transparent;
+		border-radius: 8px;
+		height:wrap;
+		min-height: 75vh;
+		padding-left:0.5vw;
+		margin-left:1vw;
+		margin-top:5vh;
+		margin-bottom: 5vh;
+	
+	}
+	
+	.card .user-img {
+		background-image: url("./AMS\ logo.svg");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: white;
+		width:  40vw;
+		border-radius: 50%;
+		height: 40vw;
+		margin: auto;
+		border: 1px solid white;
+		margin-top: -4vh;
+	}
+	.card .user-img-sp {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 40vw;
+		border-radius: 50%;
+		height: 40vw;
+		margin: auto;
+		padding-top:7vh;
+		border: 1px solid white;
+			margin-top: -4vh;
+	}
+	.card .user-img-acumensa {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width:  40vw;
+		border-radius: 50%;
+		height: 40vw;
+		margin: auto;
+		border: 1px solid white;
+			margin-top: -4vh;
+	}
+	
+	#acumensa-img{
+		width: 40vw;
+		height:40vw;
+		margin-left: 0.5vw;
+	}
+  }
+  @media only screen and (max-width:768px)and (min-width:563px) {
+	.card {
+		position: relative;
+		text-align: left;
+		color: #d3d3d3;
+		background-color: rgb(142 142 142 / 30%);
+		border: 1px solid;
+		border-color: transparent transparent transparent transparent;
+		border-radius: 8px;
+		height:wrap;
+		min-height:50vh;
+		padding-left:0.5vw;
+		margin-left:1vw;
+		margin-top:5vh;
+		margin-bottom: 5vh;
+	}
+	
+	.card .user-img {
+		background-image: url("./AMS\ logo.svg");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		margin: auto;
+		border: 1px solid white;
+		margin-top: -5vh;
+	}
+	.card .user-img-sp {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		margin: auto;
+		padding-top:4vh;
+		border: 1px solid white;
+			margin-top: -5vh;
+	}
+	.card .user-img-acumensa {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		margin: auto;
+		border: 1px solid white;
+			margin-top: -5vh;
+	}
+	
+	#acumensa-img{
+		width: 15vw;
+		height:15vw;
+		margin-left: 0.5vw;
+	}
+	
+	
+  }
 
-.card {
+  @media only screen and (min-width:769px) {.card {
     position: relative;
     text-align: left;
     color: #d3d3d3;
@@ -399,7 +605,7 @@ ROCKET
     width: 30vw;
     max-width: 30vw;
 	height:wrap;
-	min-height: 75vh;
+	min-height: 80vh;
 	padding-left:0.5vw;
 	margin-left:1vw;
 	margin-top:5vh;
@@ -424,9 +630,11 @@ ROCKET
     width: 15vw;
     border-radius: 50%;
     height:15vw;
+	padding-top:8.5vh;
     margin: auto;
     border: 1px solid white;
         margin-top: -15vh;
+		
 }
 .card .user-img-acumensa {
     
@@ -444,12 +652,8 @@ ROCKET
 	width: 15vw;
 	height:15vw;
 	margin-left: 0.5vw;
-}
-
-
-#exp-node{
-		
-      
+}}
+#exp-node{	
 		margin:0px 20px 8px 0px;
 		color:white;
 		display:block;
@@ -602,6 +806,7 @@ Projects
 	height:wrap;
     min-height:100vh;
     width: 100vw;
+
 	overflow-y: hidden;
     background-image: var(--bg);
     position: relative;
@@ -718,7 +923,7 @@ background: linear-gradient(308deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,
 	display:inline-block;
 	min-height:100vh;
 	height:wrap;
-	width:100%;
+	width:100vw;
 	margin-top:5vh;
 }
 #github-meteor{
@@ -750,7 +955,14 @@ background: linear-gradient(308deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,
         transform:rotate(360deg);
     }
 }
-
+@media only screen and (max-width: 563px) {
+	#github-meteor{
+		display:none;
+	}
+	#project-title{
+		margin-bottom:10vh;
+	}
+}
 #proj-react{
 	margin:0px 10px 3px 0px;
 	color:white;
@@ -921,7 +1133,21 @@ Achievements
 	margin-left:3vw;
 	font-size: 3em;
 	position: absolute;
-}#ach-ele{
+}
+@media only screen and (max-width: 563px) {
+	#vit-ach{
+		margin-bottom:5vh
+	}
+
+	#dev-ach{
+		margin-bottom:5vh
+	}
+	#mun-ach{
+		margin-bottom:5vh
+	}
+}
+
+#ach-ele{
 	
 	display:inline-block;
 	min-height:100vh;
@@ -997,57 +1223,115 @@ background: linear-gradient(52deg, rgba(0,0,0,0) 0%, rgba(255,0,243,0.2931547619
 /***************************************************************************
 Contact ME
 ****************************************************************************/
-#contact{
-	height:wrap;
-    min-height:60vh;
-    width: 100vw;
 
-    background-image: var(--bg);
-    position: relative;
-	background-color: black;
-	background-position: center;
-}
-#contact-title{
-	float:left;
+
+
+@media only screen and (max-width: 563px) {
+	#contact{
+		height:wrap;
+		min-height:40vh;
+		width: 100vw;
+	
+		background-image: var(--bg);
+		position: relative;
+		background-color: black;
+		background-position: center;
+	}
+	#contact-title{
+		float:left;
 	color:#d3d3d3;
 	margin-left:3vw;
-	font-size: 4em;
+	font-size: 2em;
 	position: absolute;
-}
-#about-contact-me{
-	text-transform: uppercase;
+	}
+	#about-contact-me{
+		text-transform: uppercase;
 	margin-left:4vw;
 	margin-top: 2vh;
 	color:#d3d3d3;
-	font-size: 2em;
-}
-#hit-me-up{
-	margin-left:4vw;
-	margin-right:10vh;
-	color:#d3d3d3;
-	font-size: 2em;
-}
-#where-to-mail{
+	font-size: 1em;
+	}
+	#hit-me-up{
+		margin-left:4vw;
+		margin-right:10vh;
+		color:#d3d3d3;
+		font-size: 1em;
+	}
+	#where-to-mail{
 
-	margin-left:4vw;
-	margin-top:5vh;
-	color:#d3d3d3;
-	font-size: 2em;
-}
-#emailId{
+		margin-left:4vw;
+		margin-top:5vh;
+		color:#d3d3d3;
+		font-size: 1em;
+	}
+	#emailId{
 	
-	font-size: 1.25em;
-	font-weight: 700;
-	color:#d3d3d3;
+		font-size: 1em;
+		font-weight: 700;
+		color:#d3d3d3;
+	}
+	#mail-box{
+		display:none;
+	}
 }
+
+@media only screen and (min-width: 563px) {
+	#contact{
+		height:wrap;
+		min-height:50vh;
+		width: 100vw;
+	
+		background-image: var(--bg);
+		position: relative;
+		background-color: black;
+		background-position: center;
+	}
+	#contact-title{
+		float:left;
+		color:#d3d3d3;
+		margin-left:3vw;
+		font-size: 4em;
+		position: absolute;
+	}
+	#about-contact-me{
+		text-transform: uppercase;
+		margin-left:4vw;
+		margin-top: 2vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#hit-me-up{
+		margin-left:4vw;
+		margin-right:10vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#where-to-mail{
+
+		margin-left:4vw;
+		margin-top:5vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#emailId{
+	
+		font-size: 1.25em;
+		font-weight: 500;
+		color:#d3d3d3;
+	}
+	#mail-box{
+		margin-right: 2vw;
+		height: 30vh
+	}
+}
+
+
+
+
 #emailId:hover{
 	color:rgb(255, 83, 64);
 }
 #linkedin-icon-contact-me:hover{
 	border:1px solid #0288D1;
 	border-radius: 40px;
-}
-#mail-box{
-	margin-right: 2vw;
-	height: 30vh
 }
