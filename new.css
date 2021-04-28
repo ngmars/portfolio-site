@@ -684,7 +684,7 @@ ROCKET
     width: 30vw;
     max-width: 30vw;
 	height:wrap;
-	min-height: 73vh;
+	min-height: 65vh;
 	padding-left:0.5vw;
 	margin-left:1vw;
 	margin-top:5vh;
@@ -1219,7 +1219,21 @@ Achievements
 	#vit-ach{
 		margin-bottom:5vh
 	}
+	.achive-ele{
+		min-height: 80vh;
+		height:wrap;
+		border: 2px solid grey;
+		float:left;
+		border-radius: 25px;
+		padding-bottom: 3vh;
+	}
+	#ach-text{
 
+		margin-left:5%;
+		margin-right:5%;
+		font-size:120%;
+		color: white;
+	}
 	#dev-ach{
 		margin-bottom:5vh
 	}
@@ -1228,7 +1242,7 @@ Achievements
 	}
 }
 @media only screen   
-  and (min-device-width : 768px)   
+  and (min-device-width : 563px)   
   and (max-device-width : 1024px){
 	
 	.achive-ele{
