@@ -412,8 +412,23 @@ ROCKET
     border: 1px solid white;
     margin-top: -135px;
 }
+.card .user-img-acumensa {
+    
+	background-repeat: no-repeat;
+	background-color: white;
+    width: 15vw;
+    border-radius: 50%;
+    height:15vw;
+    margin: auto;
+    border: 1px solid white;
+    margin-top: -135px;
+}
 
-
+#acumensa-img{
+	width: 15vw;
+	height:15vw;
+	margin-left: 0.5vw;
+}
 
 
 #exp-node{
