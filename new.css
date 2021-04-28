@@ -593,8 +593,71 @@ ROCKET
 	
 	
   }
+  @media only screen   
+  and (min-device-width : 768px)   
+  and (max-device-width : 1280px){
+	.card {
+		position: relative;
+		text-align: left;
+		color: #d3d3d3;
+		background-color: rgb(142 142 142 / 30%);
+		border: 1px solid;
+		border-color: transparent transparent transparent transparent;
+		border-radius: 8px;
+		width: 30vw;
+		max-width: 30vw;
+		height:wrap;
+		min-height:110vh;
+		padding-left:0.5vw;
+		margin-left:1vw;
+		margin-top:5vh;
+	}
+	
+	.card .user-img {
+		background-image: url("./AMS\ logo.svg");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		margin: auto;
+		border: 1px solid white;
+		margin-top: -15vh;
+	}
+	.card .user-img-sp {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		padding-top:8.5vh;
+		margin: auto;
+		border: 1px solid white;
+			margin-top: -15vh;
+			
+	}
+	.card .user-img-acumensa {
+		
+		background-repeat: no-repeat;
+		background-color: white;
+		width: 15vw;
+		border-radius: 50%;
+		height:15vw;
+		margin: auto;
+		border: 1px solid white;
+			margin-top: -15vh;
+	}
+	
+	#acumensa-img{
+		width: 15vw;
+		height:15vw;
+		margin-left: 0.5vw;
+	}
 
-  @media only screen and (min-width:769px) {.card {
+  }
+  @media only screen and (min-width:1281px) {.card {
     position: relative;
     text-align: left;
     color: #d3d3d3;
@@ -1146,23 +1209,32 @@ Achievements
 		margin-bottom:5vh
 	}
 }
-
-#ach-ele{
+@media only screen   
+  and (min-device-width : 768px)   
+  and (max-device-width : 1280px){
 	
-	display:inline-block;
-	min-height:100vh;
-	height:wrap;
-	width:100%;
-	margin-top:5vh;
-}
-.achive-ele{
-	min-height: 75vh;
-	height:wrap;
-	border: 2px solid grey;
-	float:left;
-	border-radius: 25px;
-	padding-bottom: 3vh;
-}
+	.achive-ele{
+		min-height: 100vh;
+		height:wrap;
+		border: 2px solid grey;
+		float:left;
+		border-radius: 25px;
+		padding-bottom: 3vh;
+	}
+  }
+  @media only screen and (min-device-width : 1281px){
+	
+	.achive-ele{
+		min-height: 75vh;
+		height:wrap;
+		border: 2px solid grey;
+		float:left;
+		border-radius: 25px;
+		padding-bottom: 3vh;
+	}
+  } 
+
+
 #vit-ach{
 	margin-left:2%;
 }
@@ -1278,9 +1350,9 @@ Contact ME
 @media only screen and (min-width: 563px) {
 	#contact{
 		height:wrap;
-		min-height:50vh;
+		min-height:60vh;
 		width: 100vw;
-	
+		padding-top:10vh;
 		background-image: var(--bg);
 		position: relative;
 		background-color: black;
