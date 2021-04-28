@@ -6,6 +6,7 @@
     height:wrap;
     min-height:95vh;
     width: 100vw;
+	overflow-y: hidden;
     background-image: var(--bg);
     position: relative;
 	background-color: black;
@@ -237,6 +238,7 @@ SKILLS
     height:wrap;
     min-height:100vh;
     width: 100vw;
+	overflow-y: hidden;
     background-image: var(--bg);
     position: relative;
 	background-color: black;
@@ -273,6 +275,7 @@ Experience
 	height:wrap;
     min-height:100vh;
     width: 100vw;
+	overflow-y: hidden;
     background-image: var(--bg);
     position: relative;
 	background-color: black;
@@ -599,6 +602,7 @@ Projects
 	height:wrap;
     min-height:100vh;
     width: 100vw;
+	overflow-y: hidden;
     background-image: var(--bg);
     position: relative;
 	background-color: black;
@@ -646,14 +650,14 @@ background: linear-gradient(308deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,
 }
 .name-element{
 
-	color:white;
+	color:#d3d3d3;
 	font-size:150%;
 	margin-left: 3%;
 	font-weight: bold;
 	
 }
 .description-element{
-	color:white;
+	color:#d3d3d3;
 	font-size:100%;
 	margin-left: 3%;
 	margin-top: 3%;
@@ -896,4 +900,96 @@ border-radius:30px;
 	float:left;
 	text-decoration:none;
 	background-color: rgb(234 82 111/ 90%);
+}
+
+/***************************************************************************
+Achievements
+****************************************************************************/
+#achievements{
+	height:wrap;
+    min-height:100vh;
+    width: 100vw;
+
+    background-image: var(--bg);
+    position: relative;
+	background-color: black;
+	background-position: center;
+}
+#achievements-title{
+	float:left;
+	color:#d3d3d3;
+	margin-left:3vw;
+	font-size: 3em;
+	position: absolute;
+}#ach-ele{
+	
+	display:inline-block;
+	min-height:100vh;
+	height:wrap;
+	width:100%;
+	margin-top:5vh;
+}
+.achive-ele{
+	min-height: 70vh;
+	height:wrap;
+	border: 2px solid grey;
+	float:left;
+	border-radius: 25px;
+	padding-bottom: 3vh;
+}
+#vit-ach{
+	margin-left:2%;
+}
+#dev-ach{
+	margin-left:2%;
+}
+#mun-ach{
+	margin-left:2%;
+}
+#ach-logo{
+	margin-top:10vh;
+	width:100%;
+	min-height:30vh;
+	height:wrap;
+}
+#VIT-logo{
+
+	width:40%;
+
+	margin-left:30%;
+	margin-right:30%;
+}
+#DEV-logo{
+
+	width:60%;
+	margin-top:10vh;
+	margin-left:20%;
+	margin-right:20%;
+}
+#MUN-logo{
+	width:80%;
+	margin-top:5vh;
+	border-radius: 5px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#ach-text{
+
+	margin-left:5%;
+	margin-right:5%;
+	font-size:120%;
+	color: white;
+}
+
+#vit-ach:hover{
+	background: rgb(0,0,0);
+background: linear-gradient(315deg, rgba(0,0,0,0) 0%, rgba(104,0,255,0.29315476190476186) 100%);
+}
+#dev-ach:hover{
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,255,250,0.29315476190476186) 100%);
+}
+#mun-ach:hover{
+background: rgb(0,0,0);
+background: linear-gradient(52deg, rgba(0,0,0,0) 0%, rgba(255,0,243,0.29315476190476186) 100%);
 }
