@@ -411,6 +411,14 @@ ROCKET
 		display:none;
 	}
   }
+  @media only screen and (min-width: 563px)and (max-width: 1024px) {
+	#rocket{
+		display:none;
+	}
+	.canvas{
+		display:none;
+	}
+  }
   
   @keyframes sweep {
 	0% {
@@ -1044,6 +1052,11 @@ background: linear-gradient(308deg, rgba(0,40,15,0.5998774509803921) 0%, rgba(0,
 		margin-bottom:10vh;
 	}
 }
+@media only screen and (min-width: 563px)and (max-width: 1024px) {
+	#github-meteor{
+		display:none;
+	}
+}
 #proj-react{
 	margin:0px 10px 3px 0px;
 	color:white;
@@ -1434,6 +1447,55 @@ Contact ME
 	#mail-box{
 		margin-right: 2vw;
 		height: 30vh
+	}
+}
+@media only screen and (min-width: 563px)and (max-width: 1024px) {
+	#contact{
+		height:wrap;
+		min-height:60vh;
+		width: 100vw;
+		padding-top:10vh;
+		background-image: var(--bg);
+		position: relative;
+		background-color: black;
+		background-position: center;
+	}
+	#contact-title{
+		float:left;
+		color:#d3d3d3;
+		margin-left:3vw;
+		font-size: 4em;
+		position: absolute;
+	}
+	#about-contact-me{
+		text-transform: uppercase;
+		margin-left:4vw;
+		margin-top: 2vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#hit-me-up{
+		margin-left:4vw;
+		margin-right:10vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#where-to-mail{
+
+		margin-left:4vw;
+		margin-top:5vh;
+		color:#d3d3d3;
+		font-size: 2em;
+	}
+	#emailId{
+	
+		font-size: 1.25em;
+		font-weight: 500;
+		color:#d3d3d3;
+	}
+	#mail-box{
+		margin-right: 2vw;
+		height: 18vh
 	}
 }
 
