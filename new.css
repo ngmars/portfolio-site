@@ -3,7 +3,8 @@
 	--bgColor:
   }
 #about {
-    height:95vh;
+    height:wrap;
+    min-height:95vh;
     width: 100vw;
     background-image: var(--bg);
     position: relative;
@@ -233,7 +234,8 @@ navbar-dark{
 SKILLS
 ****************************************************************************/
 #skills {
-    height:100vh;
+    height:wrap;
+    min-height:100vh;
     width: 100vw;
     background-image: var(--bg);
     position: relative;
@@ -268,7 +270,8 @@ SKILLS
 Experience
 ****************************************************************************/
 #experience{
-    height:100vh;
+	height:wrap;
+    min-height:100vh;
     width: 100vw;
     background-image: var(--bg);
     position: relative;
@@ -384,9 +387,11 @@ ROCKET
     border-radius: 8px;
     width: 30vw;
     max-width: 30vw;
-	height:75vh;
+	height:wrap;
+	min-height: 75vh;
 	padding-left:0.5vw;
 	margin-left:1vw;
+	margin-top:5vh;
 }
 
 .card .user-img {
@@ -399,7 +404,7 @@ ROCKET
     height:15vw;
     margin: auto;
     border: 1px solid white;
-    margin-top: -135px;
+    margin-top: -20vh;
 }
 .card .user-img-sp {
     
@@ -574,8 +579,22 @@ border-radius:30px;
 	list-style-image: url('../IMAGES/meteor.svg');
 	margin-right:3%;
 }
-
-
-
+#timeline{
+	float:right;
+	margin-right:20px;
+	font-weight:bolder;
+}
+/***************************************************************************
+Projects
+****************************************************************************/
+#projects{
+	height:wrap;
+    min-height:100vh;
+    width: 100vw;
+    background-image: var(--bg);
+    position: relative;
+	background-color: black;
+	background-position: center;
+}
 
 
