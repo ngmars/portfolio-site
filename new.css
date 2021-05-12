@@ -74,7 +74,7 @@ navbar-dark{
 		color: gray;
 		text-align: justify;
 		text-justify: auto;
-		font-size:2vh;
+		font-size:1.5em;
 		margin-left: 3vw;
 	}
 	#heading-about-me{
@@ -82,7 +82,7 @@ navbar-dark{
 		vertical-align: center;
 		margin-bottom: 3vh;
 		color:#d3d3d3;
-		font-size: 3vh;
+		font-size: 2em;
 	}
 	
 }
