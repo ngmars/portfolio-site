@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from './sections/navbar';
 import Hero from './sections/hero';
 import IntroSection from "./sections/intro"
+import AboutSection from './sections/about';
 //fontawesome imports start
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,7 +17,9 @@ library.add(fas, far, fab)
 const App = () => {
   return ( 
   <main className='max-w-100vw min-h-100vh mx-auto'>
+    <Navbar />
     <IntroSection />
+    <AboutSection />
   </main> 
   );
 }

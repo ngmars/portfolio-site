@@ -56,13 +56,13 @@ const IntroSection = () => {
         }
 
     return (
-        <div className='min-h-screen w-full flex-col relative' > 
-            <div className="w-full h-full my-10 mx-0  flex flex-col">
-                <p className="hero_tag font-medium !z-[100] text-[#8f8f8f] text-center">
+        <div className='min-h-screen w-full' > 
+            {/* <div className="w-full h-full my-10 mx-0  flex flex-col">
+                <p className="hero_tag font-medium !z-[100] text-white text-center">
                     Hi, I am Nitish Gopinath
                 </p>
-            </div>
-            <div className="w-[80vw] h-[90vh] absolute top-[0vw] left-[10vw]">
+            </div> */}
+            <div className="w-[90vw] h-[90vh] absolute top-[0vw] left-[5vw]">
                 <Canvas shadows dpr={[1, 1.5]} camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }} eventSource={document.getElementById('root')} eventPrefix="client">
                     {/* Lights */}
                     
@@ -91,6 +91,7 @@ const IntroSection = () => {
                             metalness={0.8}
                         />
                         </mesh>
+    
                         <MeComic 
                             scale={[1 , 1, 1]} 
                             position={[-0.1,-0.1,1.5]} 
@@ -103,6 +104,9 @@ const IntroSection = () => {
                         {/* Small helper that freezes the shadows for better performance */}
                 </group>
                 </Canvas>
+            </div>
+            <div className='scroll-down-arrow button-styles'>
+                Scroll down
             </div>
         </div>
      );
