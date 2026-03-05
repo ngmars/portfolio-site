@@ -106,13 +106,9 @@ body {
 
   .skills-card {
     @apply 
-    absolute 
-    top-20
-    left-1/2
-    m-4 
-    w-[40vw]
-    h-[80vh]
-    -translate-x-1/2
+    w-[90vw]
+    max-w-4xl
+    px-4
   }
 }
 
