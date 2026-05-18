@@ -5,6 +5,7 @@ import Navbar from './sections/navbar';
 import Hero from './sections/hero';
 import IntroSection from "./sections/intro"
 import AboutSection from './sections/about';
+import ExperienceSection from './sections/experience';
 //fontawesome imports start
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -20,6 +21,7 @@ const App = () => {
     <Navbar />
     <IntroSection />
     <AboutSection />
+    <ExperienceSection />
   </main> 
   );
 }

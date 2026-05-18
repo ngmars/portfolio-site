@@ -14,6 +14,17 @@ font-weight: 900;
   scroll-behavior: smooth;
 }
 
+/* GSAP ScrollTrigger scrub needs instant scroll */
+html {
+  scroll-behavior: auto;
+}
+
+html,
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 body {
   background: #000000;
   font-family: 'General Sans', sans-serif;
