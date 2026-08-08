@@ -17,21 +17,22 @@ const NavItems = () => {
 
 const Navbar = () => {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 text-white">
-            <div className="max-w-7xl max-auto">
-                <div className="flex justify-between items-center py-5 mx-auto c-space">
-                    <div href="/" className="nitis-gopinath-nav button-styles">
-                        Nitish Gopinath
-                        <div class="absolute inset-0 
-                                    before:content-[''] before:absolute before:inset-y-0 before:left-[-100%] 
-                                    before:w-1/3 before:bg-gradient-to-r before:from-white/20 before:via-white/60 before:to-white/20 
-                                    before:skew-x-12 before:animate-none
-                                    group-hover:before:animate-shine">
-                        </div>
-                    </div>
-                </div>
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white">
+            <div className="flex items-center px-5 py-4">
+                    <a href="#home" className="group flex items-center gap-3">
+                        {/* Monogram badge */}
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#35c19f]/40 bg-[#35c19f]/10 font-Rajdhani text-lg font-black leading-none text-[#35c19f] shadow-[0_0_15px_rgba(53,193,159,0.25)] transition-shadow duration-300 group-hover:shadow-[0_0_25px_rgba(53,193,159,0.5)]">
+                            NG
+                        </span>
+                        {/* Name with accent underline on hover */}
+                        <span className="flex flex-col leading-none">
+                            <span className="font-Rajdhani text-xl font-black uppercase tracking-[0.2em]">
+                                Nitish <span className="text-[#35c19f]">Gopinath</span>
+                            </span>
+                            <span className="mt-1 h-px w-0 bg-gradient-to-r from-[#35c19f] to-transparent transition-all duration-500 group-hover:w-full" />
+                        </span>
+                    </a>
             </div>
-
         </header>
       );
 }

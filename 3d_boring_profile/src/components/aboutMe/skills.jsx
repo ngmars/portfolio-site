@@ -122,7 +122,7 @@ const SkillsCard = () => {
   ];
 
   return (
-    <div className="skills-card grid min-h-0 max-h-[calc(100vh-6rem)] w-full max-w-4xl grid-cols-1 gap-4 overflow-y-auto md:grid-cols-3 md:grid-rows-3 md:gap-5">
+    <div className="skills-card mx-auto grid min-h-0 w-full max-w-4xl grid-cols-1 gap-4 md:max-h-[calc(100vh-6rem)] md:grid-cols-3 md:grid-rows-3 md:gap-5 md:overflow-y-auto">
       {/* Programming Languages + Full Stack - large, top-left */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-2 md:row-span-2" size="lg">
         <h2 className="mb-4 text-lg font-semibold uppercase text-white">

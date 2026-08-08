@@ -82,7 +82,7 @@ const Hero = () => {
                         </mesh>
                     </Suspense>
                 </Canvas> 
-            </div>  
+            </div>
         </section>
     );
 }

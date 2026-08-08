@@ -5,6 +5,8 @@ import { EffectComposer, Bloom, DepthOfField, ToneMapping } from '@react-three/p
 import { easing } from 'maath'
 import { useFrame } from '@react-three/fiber'
 import { Instances, Computers } from '../components/Hero/computers'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useMediaQuery } from 'react-responsive'
 // import {Leva, useControls} from 'leva';
 const IntroSection = () => {
 
@@ -48,9 +50,13 @@ const IntroSection = () => {
     //         }
     //     )
         
+    // Pull the camera back on small screens so the whole scene fits portrait viewports
+    const isMobile = useMediaQuery({ maxWidth: 767 })
+    const cameraZ = isMobile ? 8.5 : 5.5
+
     const CameraRig = () => {
         useFrame((state, delta) => {
-            easing.damp3(state.camera.position, [-1 + (state.pointer.x * state.viewport.width) / 3, (1 + state.pointer.y) / 2, 5.5], 0.5, delta)
+            easing.damp3(state.camera.position, [-1 + (state.pointer.x * state.viewport.width) / 3, (1 + state.pointer.y) / 2, cameraZ], 0.5, delta)
             state.camera.lookAt(0, 0, 0)
         })
         }
@@ -105,9 +111,29 @@ const IntroSection = () => {
                 </group>
                 </Canvas>
             </div>
-            <div className='scroll-down-arrow button-styles'>
-                Scroll down
+            {/* Swipe hint — the camera follows the pointer left/right (mouse only, hidden on touch) */}
+            <div className="pointer-events-none absolute bottom-20 right-8 z-[100] hidden flex-col items-center gap-2 md:flex">
+                <div className="flex items-center gap-2 text-[#35c19f]/70">
+                    <FontAwesomeIcon icon={['fas', 'chevron-left']} className="text-xs" />
+                    <div className="flex h-9 w-28 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
+                        <span className="animate-swipe-x h-4 w-4 rounded-full bg-[#35c19f] shadow-[0_0_14px_rgba(53,193,159,0.8)]" />
+                    </div>
+                    <FontAwesomeIcon icon={['fas', 'chevron-right']} className="text-xs" />
+                </div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-white/50">
+                    Move mouse to look around
+                </p>
             </div>
+
+            {/* Bouncing scroll-down arrow */}
+            <a
+                href="#about"
+                className="scroll-down-arrow group animate-bounce"
+            >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#35c19f]/40 bg-[#35c19f]/15 text-[#35c19f] shadow-[0_0_20px_rgba(53,193,159,0.3)] backdrop-blur-sm transition-all duration-300 group-hover:bg-[#35c19f]/30 group-hover:shadow-[0_0_30px_rgba(53,193,159,0.5)]">
+                    <FontAwesomeIcon icon={['fas', 'chevron-down']} className="text-lg" />
+                </span>
+            </a>
         </div>
      );
 }

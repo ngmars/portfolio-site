@@ -1,6 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/all';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const ACCENT = '#35c19f';
+
+// Newest first (used for the mobile stacked list)
 const experiences = [
   {
     company: 'DNV',
@@ -8,7 +15,7 @@ const experiences = [
     location: 'Hamburg, Germany',
     period: 'Jan 2024 – Present',
     year: '2024',
-    logo: 'https://logo.clearbit.com/dnv.com',
+    logo: 'img/Company_logos/DNV_logo.png',
     highlights: [
       'Developing the TR10 tool in Python for operational site quality assessments using large-scale wind turbine data',
       'Implemented advanced data visualizations including power curve and curtailment analysis',
@@ -22,7 +29,7 @@ const experiences = [
     location: 'Bangalore, India',
     period: 'Mar 2022 – Oct 2023',
     year: '2022',
-    logo: 'https://logo.clearbit.com/commvault.com',
+    logo: 'img/Company_logos/commvault_logo.png',
     highlights: [
       'Built backend services in C#, .NET, and C++ supporting backup, restore, and VM lifecycle operations',
       'Led migration of customer-facing backup and restore workflows from Angular to React',
@@ -35,7 +42,7 @@ const experiences = [
     location: 'Bangalore, India',
     period: 'Jan 2022 – Mar 2022',
     year: '2022',
-    logo: 'https://logo.clearbit.com/workindia.in',
+    logo: 'img/Company_logos/workindia_logo.png',
     highlights: [
       'Owned end-to-end development of ETL and ELT pipelines to unify siloed operational data',
       'Integrated Kafka-based streaming systems for scalable, near real-time data ingestion',
@@ -48,7 +55,7 @@ const experiences = [
     location: 'Bangalore, India',
     period: 'May 2021 – Nov 2021',
     year: '2021',
-    logo: 'https://logo.clearbit.com/globalfoundries.com',
+    logo: 'img/Company_logos/globalFoundries_logo.png',
     highlights: [
       'Built interactive, data-rich dashboards using React and Node.js for manufacturing analytics',
       'Integrated frontend applications with Snowflake-backed REST APIs',
@@ -61,7 +68,7 @@ const experiences = [
     location: 'Bangalore, India',
     period: 'Jan 2021 – Apr 2021',
     year: '2021',
-    logo: 'https://logo.clearbit.com/acumensa.com',
+    logo: null,
     highlights: [
       'Developed a multilingual, customer-facing web application using React and Django',
       'Implemented role-based access control and integrated third-party messaging APIs',
@@ -69,317 +76,375 @@ const experiences = [
   },
 ];
 
-const CompanyLogo = ({ logo, company, fallback, size = 'md' }) => {
-  const [imgError, setImgError] = useState(false);
-  const sizeMap = {
-    sm: 'h-9 w-9 text-xs',
-    md: 'h-12 w-12 text-base',
-    lg: 'h-16 w-16 text-lg',
-  };
-  const sizeClass = sizeMap[size] ?? sizeMap.md;
+// Newest first for the snake timeline: row 1 left→right, row 2 right→left
+const timeline = experiences;
 
-  if (imgError) {
+const YEAR_TAGLINES = {
+  2024: 'My most recent experience',
+  2022: 'Levelling up in the industry',
+  2021: 'Where it all started',
+};
+
+// Card centers in SVG viewBox units (1000 x 600).
+// Row 1: three boxes, row 2: two boxes; the path snakes through them.
+const ANCHORS = [
+  { x: 160, y: 115 },
+  { x: 500, y: 115 },
+  { x: 840, y: 115 },
+  { x: 660, y: 485 },
+  { x: 320, y: 485 },
+];
+
+const SNAKE_PATH =
+  'M 160 115 L 840 115 C 990 115 990 485 840 485 L 320 485';
+
+const initialsOf = (company) =>
+  company
+    .split(' ')
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase();
+
+const CompanyLogo = ({ exp, className = '' }) => {
+  if (!exp.logo) {
     return (
       <div
-        className={`flex shrink-0 items-center justify-center rounded-lg bg-white/5 font-semibold text-white/80 ring-1 ring-white/10 ${sizeClass}`}
+        className={`flex shrink-0 items-center justify-center rounded-xl border border-white/20 bg-black/70 font-semibold text-white/80 shadow-xl backdrop-blur-md ${className}`}
       >
-        {fallback}
+        {initialsOf(exp.company)}
       </div>
     );
   }
-
-  const imgSize = size === 'sm' ? 'h-9 w-9' : size === 'lg' ? 'h-16 w-16' : 'h-12 w-12';
   return (
-    <img
-      src={logo}
-      alt={`${company} logo`}
-      className={`shrink-0 rounded-lg object-contain bg-white/5 p-1.5 ring-1 ring-white/10 ${imgSize}`}
-      onError={() => setImgError(true)}
-    />
+    <div
+      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white p-1.5 shadow-xl ${className}`}
+    >
+      <img
+        src={exp.logo}
+        alt={`${exp.company} logo`}
+        className="h-full w-full object-contain"
+      />
+    </div>
   );
 };
 
-// Symmetric S: baseline 50, first curve peaks at 0, second curve valleys at 100 (equal amplitude)
-const S_PATH = 'M 0 50 C 180 0 320 0 500 50 C 680 100 820 100 1000 50';
-
-const NAVBAR_OFFSET = 64; // px for fixed navbar
-
 const ExperienceSection = () => {
   const sectionRef = useRef(null);
-  const pinWrapperRef = useRef(null);
-  const spacerRef = useRef(null);
+  const pinRef = useRef(null);
   const pathRef = useRef(null);
-  const dotRef = useRef(null);
-  const cardRef = useRef(null);
+  const trailRef = useRef(null);
+  const pointerRef = useRef(null);
+  const yearRef = useRef(null);
+  const taglineRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [ready, setReady] = useState(false);
-  const [isPinned, setIsPinned] = useState(false);
 
-  useEffect(() => {
-    const check = () => {
-      if (
-        sectionRef.current &&
-        pinWrapperRef.current &&
-        spacerRef.current &&
-        pathRef.current &&
-        dotRef.current &&
-        cardRef.current
-      ) {
-        setReady(true);
-      }
-    };
-    check();
-    const t = setTimeout(check, 200);
-    return () => clearTimeout(t);
-  }, []);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-  // RAF loop: read scroll position every frame (works even if scroll events don't fire)
-  useEffect(() => {
-    if (!ready || !window.matchMedia('(min-width: 768px)').matches) return;
+      // ---------- Desktop: pinned snake timeline ----------
+      mm.add('(min-width: 768px)', () => {
+        const path = pathRef.current;
+        const trail = trailRef.current;
+        const pointer = pointerRef.current;
+        if (!path || !trail || !pointer) return;
 
-    const path = pathRef.current;
-    const dot = dotRef.current;
-    const card = cardRef.current;
-    if (!path || !dot || !card) return;
+        const total = path.getTotalLength();
 
-    const pathLength = path.getTotalLength();
+        // Progress fraction along the path for each card center
+        const fractions = ANCHORS.map((a) => {
+          let best = 0;
+          let bestD = Infinity;
+          for (let i = 0; i <= 400; i++) {
+            const p = path.getPointAtLength((i / 400) * total);
+            const d = (p.x - a.x) ** 2 + (p.y - a.y) ** 2;
+            if (d < bestD) {
+              bestD = d;
+              best = i / 400;
+            }
+          }
+          return best;
+        });
 
-    const updateFromProgress = (progress) => {
-      const p = Math.max(0, Math.min(1, progress));
-      const point = path.getPointAtLength(p * pathLength);
-      const xPercent = (point.x / 1000) * 100;
+        trail.style.strokeDasharray = `${total}`;
+        trail.style.strokeDashoffset = `${total}`;
 
-      // Dot is inside SVG - set cx/cy directly so it follows path exactly
-      dot.setAttribute('cx', point.x);
-      dot.setAttribute('cy', point.y);
+        let lastIndex = -1;
+        const update = (progress) => {
+          const p = Math.max(0, Math.min(1, progress));
+          const len = p * total;
+          const point = path.getPointAtLength(len);
+          // viewBox is 1000 x 600 → convert to container percentages
+          pointer.style.left = `${point.x / 10}%`;
+          pointer.style.top = `${point.y / 6}%`;
+          trail.style.strokeDashoffset = `${total * (1 - p)}`;
 
-      gsap.set(card, {
-        left: `${xPercent}%`,
-        xPercent: -50,
+          let idx = 0;
+          for (let i = 0; i < fractions.length; i++) {
+            if (p >= fractions[i] - 0.02) idx = i;
+          }
+          if (idx !== lastIndex) {
+            lastIndex = idx;
+            const yearEl = yearRef.current;
+            const taglineEl = taglineRef.current;
+            if (yearEl && yearEl.textContent !== timeline[idx].year) {
+              yearEl.textContent = timeline[idx].year;
+              if (taglineEl) {
+                taglineEl.textContent = YEAR_TAGLINES[timeline[idx].year] ?? '';
+              }
+              gsap.fromTo(
+                [yearEl, taglineEl],
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.35, ease: 'power2.out', overwrite: true }
+              );
+            }
+            setActiveIndex(idx);
+          }
+        };
+
+        update(0);
+
+        const st = ScrollTrigger.create({
+          trigger: pinRef.current,
+          start: 'top top',
+          end: '+=250%',
+          pin: true,
+          onUpdate: (self) => update(self.progress),
+          snap: {
+            snapTo: fractions,
+            duration: { min: 0.2, max: 0.5 },
+            delay: 0.1,
+            ease: 'power1.inOut',
+          },
+        });
+
+        return () => st.kill();
       });
 
-      const newIndex = Math.min(
-        Math.floor(p * experiences.length),
-        experiences.length - 1
-      );
-      setActiveIndex(newIndex);
-    };
-
-    const scrollDistance = 3 * window.innerHeight; // 3 screens of scroll
-
-    let rafId;
-    const tick = () => {
-      const section = sectionRef.current;
-      const pinEl = pinWrapperRef.current;
-      const sectionRect = section?.getBoundingClientRect();
-      const pinRect = pinEl?.getBoundingClientRect();
-      const winH = window.innerHeight;
-
-      // Pin when timeline top hits viewport top; unpin when section scrolls out of view
-      // sectionRect.top <= 0 means we've scrolled into section; > 0 means scrolled up past it
-      const scrolledIntoSection = sectionRect && sectionRect.top <= 0;
-      const notScrolledPastSection = sectionRect && sectionRect.bottom > 0;
-      const shouldPin =
-        pinRect &&
-        pinRect.top <= NAVBAR_OFFSET &&
-        scrolledIntoSection &&
-        notScrolledPastSection;
-      setIsPinned((prev) => (prev !== shouldPin ? shouldPin : prev));
-
-      // Progress: 0 when section top hits viewport top, 1 after scrolling 3 screens
-      const progress =
-        sectionRect && sectionRect.top <= 0
-          ? Math.min(1, -sectionRect.top / scrollDistance)
-          : 0;
-
-      updateFromProgress(progress);
-      rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-
-    return () => cancelAnimationFrame(rafId);
-  }, [ready]);
+      // ---------- Mobile: free-scrolling reveal animations ----------
+      mm.add('(max-width: 767px)', () => {
+        gsap.utils.toArray('.m-progress').forEach((el) => {
+          gsap.fromTo(
+            el,
+            { scaleY: 0 },
+            {
+              scaleY: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: el.parentElement,
+                start: 'top 65%',
+                end: 'bottom 65%',
+                scrub: 0.4,
+              },
+            }
+          );
+        });
+        gsap.utils.toArray('.m-card').forEach((el) => {
+          gsap.from(el, {
+            autoAlpha: 0,
+            y: 40,
+            duration: 0.6,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
 
   return (
-    <section
-      id="experience"
-      ref={sectionRef}
-      className="relative w-full"
-    >
-      {/* Mobile: stacked cards */}
-      <div className="space-y-6 px-4 pb-16 md:hidden">
-        {experiences.map((exp) => (
-          <div
-            key={exp.company}
-            className="rounded-xl border border-white/10 bg-black/50 p-5 backdrop-blur-sm"
-          >
-            <div className="mb-3 flex items-center gap-3">
-              <CompanyLogo
-                logo={exp.logo}
-                company={exp.company}
-                fallback={exp.company.slice(0, 2).toUpperCase()}
-              />
-              <div>
-                <h3 className="font-semibold text-white">{exp.company}</h3>
-                <p className="text-xs text-white/60">
-                  {exp.role} · {exp.location} · {exp.period}
-                </p>
-              </div>
-            </div>
-            <ul className="space-y-2">
-              {exp.highlights.map((h, i) => (
-                <li key={i} className="flex gap-2 text-sm text-white/80">
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#35c19f]/70" />
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* Desktop: placeholder only when pinned (reserves space for fixed timeline) */}
-      {isPinned && (
-        <div className="hidden h-screen md:block" aria-hidden="true" />
-      )}
-
-      {/* Desktop: pin wrapper - position:fixed when in view so timeline stays in place */}
+    <section id="experience" ref={sectionRef} className="relative w-full">
+      {/* ---------- Desktop: one-screen pinned snake timeline ---------- */}
       <div
-        ref={pinWrapperRef}
-        className="hidden md:block md:min-h-screen md:w-full"
-        style={
-          isPinned
-            ? {
-                position: 'fixed',
-                top: NAVBAR_OFFSET,
-                left: 0,
-                right: 0,
-                bottom: 'auto',
-                height: `calc(100vh - ${NAVBAR_OFFSET}px)`,
-                zIndex: 10,
-              }
-            : undefined
-        }
+        ref={pinRef}
+        className="relative hidden h-screen w-full flex-col overflow-hidden md:flex"
       >
         {/* Section header */}
-        <div className="relative z-10 py-8">
-          <h2 className="text-center text-3xl font-semibold tracking-tight text-white/95 md:text-4xl">
+        <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-20">
+        {/* <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
+            Where I&apos;ve worked
+          </p>*/}
+          <h2 className="text-center text-4xl uppercase leading-[0.9] text-white lg:text-5xl">
             Experience
           </h2>
-          <p className="mt-2 text-center text-sm text-white/50">
-            Scroll to explore my journey
-          </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative flex min-h-[70vh] min-w-full flex-1 items-center justify-center px-4 py-12 md:min-h-[calc(100vh-12rem)] md:px-12">
-          <div className="relative h-full w-full max-w-6xl">
-          {/* S-shaped wavy line */}
-          <svg
-            className="absolute left-0 top-1/2 h-40 w-full -translate-y-1/2 md:h-48"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-          >
-            <path
-              ref={pathRef}
-              d={S_PATH}
-              fill="none"
-              stroke="rgba(255,255,255,0.2)"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            {/* Optional glow */}
-            <path
-              d={S_PATH}
-              fill="none"
-              stroke="rgba(53,193,159,0.2)"
-              strokeWidth="12"
-              strokeLinecap="round"
-              className="blur-sm"
-            />
-            {/* Dot inside SVG - follows path exactly in same coordinate system */}
-            <circle
-              ref={dotRef}
-              cx={0}
-              cy={50}
-              r={6}
-              fill="#35c19f"
-              style={{ filter: 'drop-shadow(0 0 12px rgba(53,193,159,0.6))' }}
-            />
-          </svg>
+        {/* Timeline stage */}
+        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-8 pt-2">
+          <div className="relative h-full w-full">
+            {/* Snake line */}
+            <svg
+              className="pointer-events-none absolute inset-0 h-full w-full"
+              viewBox="0 0 1000 600"
+              preserveAspectRatio="none"
+            >
+              <path
+                ref={pathRef}
+                d={SNAKE_PATH}
+                fill="none"
+                stroke="rgba(255,255,255,0.12)"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+              <path
+                ref={trailRef}
+                d={SNAKE_PATH}
+                fill="none"
+                stroke={ACCENT}
+                strokeWidth="3"
+                strokeLinecap="round"
+                style={{ filter: `drop-shadow(0 0 6px ${ACCENT})` }}
+              />
+            </svg>
 
-          {/* Nodes: year + logo alternating above/below the line */}
-          {experiences.map((exp, i) => {
-            const leftPercent = (i / (experiences.length - 1)) * 100;
-            const isAbove = i % 2 === 0;
-            return (
-              <div
-                key={exp.company}
-                className="absolute flex flex-col items-center gap-2"
-                style={{
-                  left: `${leftPercent}%`,
-                  top: isAbove ? 'calc(50% - 72px)' : 'calc(50% + 72px)',
-                  transform: 'translate(-50%, 0)',
-                }}
+            {/* Year readout — sits between the two rows, follows the scroll */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 text-center">
+              <span
+                ref={yearRef}
+                className="font-Rajdhani text-6xl font-black leading-none text-white/20 lg:text-7xl"
               >
-                <CompanyLogo
-                  logo={exp.logo}
-                  company={exp.company}
-                  fallback={exp.company.slice(0, 2).toUpperCase()}
-                  size="lg"
+                {timeline[0].year}
+              </span>
+              <span
+                ref={taglineRef}
+                className="text-xs font-medium uppercase tracking-[0.25em] text-white/35"
+              >
+                {YEAR_TAGLINES[timeline[0].year]}
+              </span>
+            </div>
+
+            {/* Pointer riding the line (rendered below the tiles so it never crosses them) */}
+            <div
+              ref={pointerRef}
+              className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${ANCHORS[0].x / 10}%`, top: `${ANCHORS[0].y / 6}%` }}
+            >
+              <div className="relative flex h-5 w-5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#35c19f]/50" />
+                <span
+                  className="relative inline-flex h-3.5 w-3.5 rounded-full bg-[#35c19f]"
+                  style={{ boxShadow: `0 0 16px ${ACCENT}` }}
                 />
-                <span className="text-xs font-medium tracking-wide text-white/60">
-                  {exp.year}
-                </span>
               </div>
-            );
-          })}
+            </div>
 
-          {/* Job description card - always above the curve; logos stay alternating above/below */}
-          <div
-            ref={cardRef}
-            className="absolute left-0 z-10 w-full max-w-sm -translate-x-1/2"
-            style={{
-              top: 'auto',
-              bottom: 'calc(50% - 100px)',
-            }}
-          >
-            {experiences.map((exp, i) => (
-              <div
-                key={exp.company}
-                className={`absolute inset-x-0 mx-auto transition-opacity duration-300 ${
-                  i === activeIndex
-                    ? 'pointer-events-auto opacity-100'
-                    : 'pointer-events-none opacity-0'
-                }`}
-              >
-                <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-md shadow-xl shadow-black/30">
-                  <div className="border-b border-white/5 p-4">
-                    <div className="flex items-center gap-3">
-                      <CompanyLogo
-                        logo={exp.logo}
-                        company={exp.company}
-                        fallback={exp.company.slice(0, 2).toUpperCase()}
-                      />
-                      <div className="min-w-0 flex-1">
-                        <h3 className="truncate font-semibold text-white">
-                          {exp.company}
+            {/* Experience boxes (solid background so the line passes behind, not through) */}
+            {timeline.map((exp, i) => {
+              const active = i === activeIndex;
+              return (
+                <div
+                  key={exp.company}
+                  className="absolute z-20 w-[30%] -translate-x-1/2 -translate-y-1/2"
+                  style={{
+                    left: `${ANCHORS[i].x / 10}%`,
+                    top: `${ANCHORS[i].y / 6}%`,
+                  }}
+                >
+                  <div
+                    className={`rounded-lg border bg-[#0b0b0f] p-5 shadow-xl transition-all duration-500 ${
+                      active
+                        ? 'scale-100 border-[#35c19f]/60 shadow-[0_0_35px_rgba(53,193,159,0.18)]'
+                        : 'scale-[0.97] border-white/15'
+                    }`}
+                  >
+                    <div
+                      className={`transition-opacity duration-500 ${
+                        active ? 'opacity-100' : 'opacity-60'
+                      }`}
+                    >
+                    <div className="flex items-center gap-4">
+                      <CompanyLogo exp={exp} className="h-14 w-14 text-base" />
+                      <div className="min-w-0">
+                        <h3 className="truncate text-base font-semibold text-white lg:text-lg">
+                          {exp.role}
                         </h3>
-                        <p className="text-xs text-white/60">
-                          {exp.role} · {exp.location}
+                        <p className="truncate text-sm text-white/60">
+                          {exp.company} · {exp.location}
                         </p>
-                        <p className="text-[11px] text-white/40">{exp.period}</p>
+                        <p
+                          className={`text-xs font-medium tracking-wide transition-colors duration-500 ${
+                            active ? 'text-[#35c19f]' : 'text-white/40'
+                          }`}
+                        >
+                          {exp.period}
+                        </p>
                       </div>
                     </div>
+                    <ul className="mt-4 space-y-2">
+                      {exp.highlights.map((h, j) => (
+                        <li
+                          key={j}
+                          className="flex gap-2.5 text-sm leading-snug text-white/80"
+                        >
+                          <span
+                            className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-500 ${
+                              active ? 'bg-[#35c19f]' : 'bg-white/30'
+                            }`}
+                          />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    </div>
                   </div>
-                  <ul className="space-y-2 p-4 pt-3">
-                    {exp.highlights.map((highlight, j) => (
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ---------- Mobile: left spine, stacked cards ---------- */}
+      <div className="relative px-4 pb-24 md:hidden">
+        <div className="flex flex-col items-center gap-3 pb-12 pt-24">
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
+            Where I&apos;ve worked
+          </p>
+          <h2 className="text-center text-4xl uppercase leading-[0.9] text-white">
+            Experience
+          </h2>
+        </div>
+        <div className="relative">
+          <div className="pointer-events-none absolute bottom-0 left-[23px] top-0 w-px bg-white/10" />
+          <div
+            className="m-progress pointer-events-none absolute bottom-0 left-[22px] top-0 w-[3px] origin-top rounded-full"
+            style={{
+              background: `linear-gradient(to bottom, ${ACCENT}, ${ACCENT}66)`,
+              boxShadow: `0 0 10px ${ACCENT}80`,
+            }}
+          />
+          <div className="space-y-10">
+            {experiences.map((exp) => (
+              <div key={exp.company} className="relative pl-16">
+                <div className="absolute left-0 top-0">
+                  <CompanyLogo exp={exp} className="h-12 w-12 text-sm" />
+                </div>
+                <div className="m-card rounded-lg border border-white/20 bg-black/70 p-5 shadow-xl backdrop-blur-md">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                    <h3 className="text-lg font-semibold text-white">
+                      {exp.role}
+                    </h3>
+                    <span className="rounded-full border border-[#35c19f]/30 bg-[#35c19f]/10 px-3 py-0.5 text-[11px] font-medium tracking-wide text-[#35c19f]">
+                      {exp.period}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-white/60">
+                    {exp.company} · {exp.location}
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {exp.highlights.map((h, i) => (
                       <li
-                        key={j}
-                        className="flex gap-2 text-[13px] leading-relaxed text-white/80"
+                        key={i}
+                        className="flex gap-2.5 text-[13px] leading-relaxed text-white/80"
                       >
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#35c19f]/70" />
-                        <span>{highlight}</span>
+                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#35c19f]/70" />
+                        <span>{h}</span>
                       </li>
                     ))}
                   </ul>
@@ -389,14 +454,6 @@ const ExperienceSection = () => {
           </div>
         </div>
       </div>
-      </div>
-
-      {/* Spacer creates scroll room - dot moves as user scrolls through this */}
-      <div
-        ref={spacerRef}
-        className="hidden h-[300vh] md:block"
-        aria-hidden="true"
-      />
     </section>
   );
 };

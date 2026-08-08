@@ -124,6 +124,21 @@ body {
 }
 
 
+/* Swipe hint on the landing — dot glides left to right and back */
+@keyframes swipe-x {
+  0%,
+  100% {
+    transform: translateX(-32px);
+  }
+  50% {
+    transform: translateX(32px);
+  }
+}
+
+.animate-swipe-x {
+  animation: swipe-x 2s ease-in-out infinite;
+}
+
 .arrow-gradient {
   background-image: linear-gradient(
     to right,

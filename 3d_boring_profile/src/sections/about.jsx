@@ -6,30 +6,53 @@ gsap.registerPlugin(ScrollTrigger);
 const AboutSection = () => {
 
     useGSAP(()=> {
-        const clipAnimation = gsap.timeline({
-            scrollTrigger : {
-                trigger : "#clip",
-                start: 'center center',
-                end : "+=400 center",
-                scrub: 0.5,
-                pin: true,
-                pinSpacing: true
-            }
-        })
+        const mm = gsap.matchMedia();
 
-        clipAnimation
-        .fromTo('.blur-overlay', { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0)
-        .to('.mask-clip-path', {
-            width: '100vw',
-            height: '100vh',
-            borderRadius: 0
-        }, 0)
-        .to('.overlay-divs', {
-            opacity: 1,
-            y: 0,
-            stagger: 0.2,
-            duration: 1
-            }, "-=0.3")
+        // Desktop only — the pinned clip-expansion animation
+        mm.add('(min-width: 768px)', () => {
+            const clipAnimation = gsap.timeline({
+                scrollTrigger : {
+                    trigger : "#clip",
+                    start: 'center center',
+                    end : "+=400 center",
+                    scrub: 0.5,
+                    pin: true,
+                    pinSpacing: true
+                }
+            })
+
+            clipAnimation
+            .fromTo('.blur-overlay', { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0)
+            .to('.mask-clip-path', {
+                width: '100vw',
+                height: '100vh',
+                borderRadius: 0
+            }, 0)
+            .to('.overlay-divs', {
+                opacity: 1,
+                y: 0,
+                stagger: 0.2,
+                duration: 1
+                }, "-=0.3")
+
+            return () => {
+                clipAnimation.scrollTrigger?.kill();
+                clipAnimation.kill();
+            };
+        });
+
+        // Mobile — simple reveals for the image and skills card in normal flow
+        mm.add('(max-width: 767px)', () => {
+            gsap.utils.toArray('.m-about-reveal').forEach((el) => {
+                gsap.from(el, {
+                    autoAlpha: 0,
+                    y: 40,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+                });
+            });
+        });
     })
     return ( 
         <div id="about" className="min-h-screen w-screen">
@@ -45,10 +68,11 @@ const AboutSection = () => {
                         sometext about how I am a developer... let's pretend that's impressive
                     </p>
                 </div>
-                <div className='relative z-0 h-dvh w-screen' id='clip'>
+                {/* Desktop: pinned clip-expansion into the skills overlay */}
+                <div className='relative z-0 hidden h-dvh w-screen md:block' id='clip'>
                     <div id="about-me-image" className='mask-clip-path about-image relative'>
-                        <img 
-                            
+                        <img
+
                             src="img/aboutme2.png"
                             alt="about-me-image"
                             className='absolute left-0 top-0 size-full object-cover'
@@ -59,6 +83,20 @@ const AboutSection = () => {
                         </div>
 
 
+                    </div>
+                </div>
+
+                {/* Mobile: image and skills card in normal flow */}
+                <div className="flex w-full flex-col items-center gap-8 px-4 pb-16 pt-4 md:hidden">
+                    <div className="m-about-reveal w-full overflow-hidden rounded-3xl border border-white/15 shadow-xl">
+                        <img
+                            src="img/aboutme2.png"
+                            alt="about-me-image"
+                            className="h-[45vh] w-full object-cover"
+                        />
+                    </div>
+                    <div className="m-about-reveal w-full">
+                        <SkillsCard />
                     </div>
                 </div>
             </div>

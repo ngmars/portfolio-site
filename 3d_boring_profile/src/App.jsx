@@ -6,6 +6,8 @@ import Hero from './sections/hero';
 import IntroSection from "./sections/intro"
 import AboutSection from './sections/about';
 import ExperienceSection from './sections/experience';
+import ProjectsSection from './sections/projects';
+import ContactSection from './sections/contact';
 //fontawesome imports start
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,7 +24,9 @@ const App = () => {
     <IntroSection />
     <AboutSection />
     <ExperienceSection />
-  </main> 
+    <ProjectsSection />
+    <ContactSection />
+  </main>
   );
 }
  
