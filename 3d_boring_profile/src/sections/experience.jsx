@@ -267,9 +267,9 @@ const ExperienceSection = () => {
       >
         {/* Section header */}
         <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-20">
-        {/* <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
+        <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
             Where I&apos;ve worked
-          </p>*/}
+          </p>
           <h2 className="text-center text-4xl uppercase leading-[0.9] text-white lg:text-5xl">
             Experience
           </h2>
@@ -307,13 +307,14 @@ const ExperienceSection = () => {
             <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 text-center">
               <span
                 ref={yearRef}
-                className="font-Rajdhani text-6xl font-black leading-none text-white/20 lg:text-7xl"
+                className="font-Rajdhani text-6xl font-black leading-none text-[#35c19f] lg:text-7xl"
+                style={{ textShadow: `0 0 30px ${ACCENT}55` }}
               >
                 {timeline[0].year}
               </span>
               <span
                 ref={taglineRef}
-                className="text-xs font-medium uppercase tracking-[0.25em] text-white/35"
+                className="text-xs font-medium uppercase tracking-[0.25em] text-[#35c19f]/70"
               >
                 {YEAR_TAGLINES[timeline[0].year]}
               </span>
@@ -337,6 +338,7 @@ const ExperienceSection = () => {
             {/* Experience boxes (solid background so the line passes behind, not through) */}
             {timeline.map((exp, i) => {
               const active = i === activeIndex;
+              const visited = i < activeIndex;
               return (
                 <div
                   key={exp.company}
@@ -347,15 +349,23 @@ const ExperienceSection = () => {
                   }}
                 >
                   <div
-                    className={`rounded-lg border bg-[#0b0b0f] p-5 shadow-xl transition-all duration-500 ${
+                    className={`relative rounded-lg border bg-[#0b0b0f] p-5 shadow-xl transition-all duration-500 ${
                       active
                         ? 'scale-100 border-[#35c19f]/60 shadow-[0_0_35px_rgba(53,193,159,0.18)]'
-                        : 'scale-[0.97] border-white/15'
+                        : visited
+                          ? 'scale-[0.97] border-[#35c19f]/30'
+                          : 'scale-[0.97] border-white/15'
                     }`}
                   >
+                    {/* Visited badge — marks tiles the timeline has already crossed */}
+                    {visited && (
+                      <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-[#35c19f]/50 bg-[#0b0b0f] text-[11px] font-bold text-[#35c19f] shadow-[0_0_12px_rgba(53,193,159,0.35)]">
+                        ✓
+                      </span>
+                    )}
                     <div
                       className={`transition-opacity duration-500 ${
-                        active ? 'opacity-100' : 'opacity-60'
+                        active ? 'opacity-100' : visited ? 'opacity-75' : 'opacity-60'
                       }`}
                     >
                     <div className="flex items-center gap-4">
@@ -369,7 +379,7 @@ const ExperienceSection = () => {
                         </p>
                         <p
                           className={`text-xs font-medium tracking-wide transition-colors duration-500 ${
-                            active ? 'text-[#35c19f]' : 'text-white/40'
+                            active ? 'text-[#35c19f]' : 'text-[#35c19f]/60'
                           }`}
                         >
                           {exp.period}

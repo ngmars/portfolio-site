@@ -124,6 +124,23 @@ body {
 }
 
 
+/* Spinner shown while a 3D canvas loads (used by CanvasLoader) */
+.canvas-loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgba(53, 193, 159, 0.2);
+  border-top-color: #35c19f;
+  box-shadow: 0 0 24px rgba(53, 193, 159, 0.25);
+  animation: canvas-spin 0.9s linear infinite;
+}
+
+@keyframes canvas-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Swipe hint on the landing — dot glides left to right and back */
 @keyframes swipe-x {
   0%,

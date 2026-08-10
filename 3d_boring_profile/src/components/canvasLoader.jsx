@@ -1,8 +1,7 @@
 import {Html, useProgress} from "@react-three/drei"
 const CanvasLoader = () => {
     const {progress} = useProgress();
-    console.log(progress)
-    return ( 
+    return (
         <Html
             as="div"
             center
@@ -14,10 +13,10 @@ const CanvasLoader = () => {
             }}
         >
             <span className="canvas-loader"/>
-            <p style={{ fontSize: 14, color: "#F1F1F1", fontWeight: 800, marginTop:40}}>
+            <p style={{ fontSize: 14, color: "#35c19f", fontWeight: 800, marginTop: 24, letterSpacing: '0.2em' }}>
                 {
-                    (progress !== 0) ? 
-                    (`${progress}%`) : ("Loading...")
+                    (progress !== 0) ?
+                    (`${Math.round(progress)}%`) : ("Loading...")
                 }
             </p>
         </Html>

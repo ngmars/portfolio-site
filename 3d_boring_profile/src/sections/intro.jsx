@@ -7,6 +7,8 @@ import { useFrame } from '@react-three/fiber'
 import { Instances, Computers } from '../components/Hero/computers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useMediaQuery } from 'react-responsive'
+import { Suspense } from 'react'
+import CanvasLoader from '../components/canvasLoader'
 // import {Leva, useControls} from 'leva';
 const IntroSection = () => {
 
@@ -71,8 +73,9 @@ const IntroSection = () => {
             <div className="w-[90vw] h-[90vh] absolute top-[0vw] left-[5vw]">
                 <Canvas shadows dpr={[1, 1.5]} camera={{ position: [-1.5, 1, 5.5], fov: 45, near: 1, far: 20 }} eventSource={document.getElementById('root')} eventPrefix="client">
                     {/* Lights */}
-                    
+
                     <color attach="background" args={['black']} />
+                    <Suspense fallback={<CanvasLoader />}>
                     <hemisphereLight intensity={0.15} groundColor="black" />
                     <spotLight decay={0} position={[10, 20, 10]} angle={0.12} penumbra={1} intensity={1} castShadow shadow-mapSize={1024} />
                     {/* Main scene */}
@@ -109,6 +112,7 @@ const IntroSection = () => {
                         <CameraRig />
                         {/* Small helper that freezes the shadows for better performance */}
                 </group>
+                </Suspense>
                 </Canvas>
             </div>
             {/* Swipe hint — the camera follows the pointer left/right (mouse only, hidden on touch) */}
