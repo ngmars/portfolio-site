@@ -267,9 +267,9 @@ const ExperienceSection = () => {
       >
         {/* Section header */}
         <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-20">
-        <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
+        {/* <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
             Where I&apos;ve worked
-          </p>
+          </p> */}
           <h2 className="text-center text-4xl uppercase leading-[0.9] text-white lg:text-5xl">
             Experience
           </h2>

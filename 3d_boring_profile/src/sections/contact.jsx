@@ -16,7 +16,7 @@ const LINKS = {
   linkedin: 'https://www.linkedin.com/in/nitish-gopinath/', // e.g. https://www.linkedin.com/in/your-handle
   github: 'https://github.com/ngmars', // e.g. https://github.com/your-handle
   email: 'mailto:nitish.gopinath@email.com',
-  resume: 'resume.pdf', // drop the file into public/
+  resume: 'https://drive.google.com/file/d/1nsw0s1mJpdtYBa9AnOCfNsMplgMJJgcm/view?usp=sharing', // drop the file into public/
 };
 // ───────────────────────────────────────────────────────────────
 
