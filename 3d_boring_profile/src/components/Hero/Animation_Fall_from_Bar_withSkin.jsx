@@ -13,16 +13,15 @@ const MeComic = (props) => {
   const { scene, animations } = useGLTF('./models/Meshy_Merged_Animations.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
-  const { actions , names } = useAnimations(animations, group)
-  console.log(names);
+  const { actions } = useAnimations(animations, group)
 
-  useEffect(()=>{
-    actions["Fall_from_Bar"].reset().fadeIn(0.5).play()
-    actions["Fall_from_Bar"].reset().fadeOut(1).play()
-    actions["Big_Wave_Hello"].reset().fadeIn(2.5).play()
-    //actions["Big_Wave_Hello"].reset().fadeOut(3.5).play()
-    //actions["Joyful_Dance_with_Hand_Sway"].reset().fadeIn(0.5).play()
-  },[])
+  useEffect(() => {
+    const fall = actions['Fall_from_Bar']
+    const wave = actions['Big_Wave_Hello']
+    fall?.reset().fadeIn(0.5).play()
+    fall?.reset().fadeOut(1).play()
+    wave?.reset().fadeIn(2.5).play()
+  }, [actions])
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

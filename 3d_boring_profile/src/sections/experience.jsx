@@ -124,6 +124,8 @@ const CompanyLogo = ({ exp, className = '' }) => {
         src={exp.logo}
         alt={`${exp.company} logo`}
         className="h-full w-full object-contain"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );

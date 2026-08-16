@@ -36,4 +36,3 @@ const DanceFigure = ({ action = 'All_Night_Dance', ...props }) => {
 }
 
 export default DanceFigure
-useGLTF.preload('./models/Meshy_Merged_Animations.glb')

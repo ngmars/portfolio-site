@@ -1,33 +1,34 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
-// Component imports
 import Navbar from './sections/navbar';
-import Hero from './sections/hero';
-import IntroSection from "./sections/intro"
-import AboutSection from './sections/about';
-import ExperienceSection from './sections/experience';
-import ProjectsSection from './sections/projects';
-import ContactSection from './sections/contact';
-//fontawesome imports start
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { far } from '@fortawesome/free-regular-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-// fontawesome imports end
+import IntroSection from "./sections/intro";
 
-library.add(fas, far, fab)
+const AboutSection = lazy(() => import('./sections/about'));
+const ExperienceSection = lazy(() => import('./sections/experience'));
+const ProjectsSection = lazy(() => import('./sections/projects'));
+const ContactSection = lazy(() => import('./sections/contact'));
+
+const SectionFallback = () => <div className="min-h-screen" aria-hidden />;
+
 const App = () => {
-  return ( 
-  <main className='max-w-100vw min-h-100vh mx-auto'>
-    <Navbar />
-    <IntroSection />
-    <AboutSection />
-    <ExperienceSection />
-    <ProjectsSection />
-    <ContactSection />
-  </main>
+  return (
+    <main className='max-w-100vw min-h-100vh mx-auto'>
+      <Navbar />
+      <IntroSection />
+      <Suspense fallback={<SectionFallback />}>
+        <AboutSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ExperienceSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ProjectsSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ContactSection />
+      </Suspense>
+    </main>
   );
 }
- 
+
 export default App;

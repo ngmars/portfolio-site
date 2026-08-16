@@ -73,9 +73,11 @@ const AboutSection = () => {
                     <div id="about-me-image" className='mask-clip-path about-image relative'>
                         <img
 
-                            src="img/aboutme2.png"
+                            src="img/aboutme2.jpg"
                             alt="about-me-image"
                             className='absolute left-0 top-0 size-full object-cover'
+                            loading="lazy"
+                            decoding="async"
                         />
                         <div className="blur-overlay pointer-events-none absolute inset-0 bg-black/20 backdrop-blur-sm opacity-0" />
                         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 pt-24 overlay-divs opacity-0">
@@ -90,9 +92,11 @@ const AboutSection = () => {
                 <div className="flex w-full flex-col items-center gap-8 px-4 pb-16 pt-4 md:hidden">
                     <div className="m-about-reveal w-full overflow-hidden rounded-3xl border border-white/15 shadow-xl">
                         <img
-                            src="img/aboutme2.png"
+                            src="img/aboutme2.jpg"
                             alt="about-me-image"
                             className="h-[45vh] w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                         />
                     </div>
                     <div className="m-about-reveal w-full">

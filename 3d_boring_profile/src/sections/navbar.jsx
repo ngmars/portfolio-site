@@ -1,19 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react';
-import { navLinks } from '../constants/navbar_constants';
-const NavItems = () => {
-    return(
-        <ul className='nav-ul'>
-            {
-                navLinks.map(({id,name,href}) =>(
-                    <li key={id} href={href} className='nav-li'>
-                        {name}
-                    </li>
-                ))
-            }
-        </ul>
-    )
-}
+import React from 'react';
 
 const Navbar = () => {
     return (

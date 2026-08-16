@@ -205,6 +205,8 @@ const ProjectsSection = () => {
                 src="img/projects.jpeg"
                 alt="Workshop illustration"
                 className="w-full rounded-xl border border-white/15 object-cover shadow-2xl"
+                loading="lazy"
+                decoding="async"
               />
               <div
                 className="pointer-events-none absolute inset-0 rounded-xl"
@@ -244,6 +246,8 @@ const ProjectsSection = () => {
           src="img/projects.jpeg"
           alt="Workshop illustration"
           className="m-proj-img mb-10 w-full rounded-xl border border-white/15 object-cover shadow-2xl"
+          loading="lazy"
+          decoding="async"
         />
         <div className="space-y-8">
           {projects.map((project, i) => (

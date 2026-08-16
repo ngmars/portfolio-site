@@ -1,11 +1,14 @@
-import { useRef, Suspense } from 'react';
+import { useRef, Suspense, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Canvas } from '@react-three/fiber';
 import DanceFigure from '../components/contact/danceFigure';
 import CanvasLoader from '../components/canvasLoader';
+import useInView from '../hooks/useInView';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,24 +28,30 @@ const socials = [
     name: 'LinkedIn',
     handle: 'Connect professionally',
     href: LINKS.linkedin,
-    icon: ['fab', 'linkedin-in'],
+    icon: faLinkedinIn,
   },
   {
     name: 'GitHub',
     handle: 'See what I build',
     href: LINKS.github,
-    icon: ['fab', 'github'],
+    icon: faGithub,
   },
   {
     name: 'Email',
     handle: 'nitish.gopinath@gmail.com',
     href: LINKS.email,
-    icon: ['fas', 'envelope'],
+    icon: faEnvelope,
   },
 ];
 
 const ContactSection = () => {
   const sectionRef = useRef(null);
+  const { ref: canvasWrapRef, inView } = useInView('250px', false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (inView) setMounted(true);
+  }, [inView]);
 
   useGSAP(
     () => {
@@ -112,7 +121,7 @@ const ContactSection = () => {
           className="group inline-flex items-center gap-3 rounded-full bg-[#35c19f] px-8 py-3.5 text-sm font-semibold uppercase tracking-wider text-[#0b0b0f] shadow-[0_0_30px_rgba(53,193,159,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(53,193,159,0.55)]"
         >
           <FontAwesomeIcon
-            icon={['fas', 'download']}
+            icon={faDownload}
             className="transition-transform duration-300 group-hover:translate-y-0.5"
           />
           Download Resume
@@ -120,30 +129,25 @@ const ContactSection = () => {
       </div>
 
       {/* 3D send-off — same character as the hero, busting a move */}
-      <div className="contact-reveal mx-auto mt-8 h-80 w-full max-w-3xl md:h-96">
-        <Canvas className="h-full w-full">
-          <Suspense fallback={<CanvasLoader />}>
-            <ambientLight intensity={0.7} />
-            <spotLight
-              position={[10, 20, 10]}
-              angle={0.3}
-              penumbra={0.5}
-              intensity={3}
-              castShadow
-              shadow-mapSize-width={2048}
-              shadow-mapSize-height={2048}
-            />
-            <DanceFigure
-              scale={[1.5, 1.5, 1.5]}
-              position={[-1.5, -1.1, 2.7]}
-              rotation={[0, 0, 0]}
-            />
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.4, 0]} receiveShadow>
-              <planeGeometry args={[50, 50]} />
-              <shadowMaterial opacity={0.3} />
-            </mesh>
-          </Suspense>
-        </Canvas>
+      <div ref={canvasWrapRef} className="contact-reveal mx-auto mt-8 h-80 w-full max-w-3xl md:h-96">
+        {mounted && (
+          <Canvas
+            className="h-full w-full"
+            dpr={1}
+            frameloop={inView ? 'always' : 'never'}
+            gl={{ antialias: false, powerPreference: 'high-performance', stencil: false }}
+          >
+            <Suspense fallback={<CanvasLoader />}>
+              <ambientLight intensity={0.7} />
+              <directionalLight position={[8, 12, 8]} intensity={1.4} />
+              <DanceFigure
+                scale={[1.5, 1.5, 1.5]}
+                position={[-1.5, -1.1, 2.7]}
+                rotation={[0, 0, 0]}
+              />
+            </Suspense>
+          </Canvas>
+        )}
       </div>
 
       {/* Footer */}

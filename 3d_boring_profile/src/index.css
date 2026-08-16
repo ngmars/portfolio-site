@@ -8,6 +8,7 @@
 font-family: 'Rajdhani';
 src: url('./fonts/TTF/Rajdhani-Variable.ttf') format('truetype');
 font-weight: 900;
+font-display: swap;
 }
 
 * {
