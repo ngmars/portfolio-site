@@ -27,9 +27,21 @@ import { TbDatabase } from 'react-icons/tb';
 
 const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
   const config = {
-    sm: { wrapper: 'h-9 w-9 shrink-0', icon: 'size-7', text: 'text-[10px]' },
-    md: { wrapper: 'h-10 w-10 shrink-0', icon: 'size-8', text: 'text-xs' },
-    lg: { wrapper: 'h-11 w-11 shrink-0', icon: 'size-9', text: 'text-xs' },
+    sm: {
+      wrapper: 'size-[clamp(1.75rem,4.3vh,2.25rem)] shrink-0',
+      icon: 'size-[clamp(1.375rem,3.4vh,1.75rem)]',
+      text: 'text-[clamp(8px,1.4vh,10px)]',
+    },
+    md: {
+      wrapper: 'size-[clamp(1.875rem,4.7vh,2.5rem)] shrink-0',
+      icon: 'size-[clamp(1.5rem,3.8vh,2rem)]',
+      text: 'text-[clamp(9px,1.6vh,12px)]',
+    },
+    lg: {
+      wrapper: 'size-[clamp(2rem,5.2vh,2.75rem)] shrink-0',
+      icon: 'size-[clamp(1.625rem,4.3vh,2.25rem)]',
+      text: 'text-[clamp(9px,1.6vh,12px)]',
+    },
   };
   const { wrapper, icon: iconSize, text } = config[size];
   return (
@@ -50,11 +62,11 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
 const SkillSection = ({ title, skills, size = 'md' }) => (
   <div className="min-w-0 overflow-hidden text-center">
     {title && (
-      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/70">
+      <h3 className="mb-[clamp(0.25rem,1.2vh,0.75rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase tracking-wider text-white/70">
         {title}
       </h3>
     )}
-    <div className="flex flex-wrap justify-center gap-3">
+    <div className="flex flex-wrap justify-center gap-[clamp(0.375rem,1.3vh,0.75rem)]">
       {skills.map(({ icon, name, color }) => (
         <SkillItem key={name} icon={icon} name={name} color={color} size={size} />
       ))}
@@ -64,9 +76,9 @@ const SkillSection = ({ title, skills, size = 'md' }) => (
 
 const Card = ({ children, className = '', size = 'md' }) => {
   const padding = {
-    sm: 'p-6',
-    md: 'p-7',
-    lg: 'p-8',
+    sm: 'p-[clamp(0.625rem,2.2vh,1.5rem)]',
+    md: 'p-[clamp(0.75rem,2.6vh,1.75rem)]',
+    lg: 'p-[clamp(0.875rem,3vh,2rem)]',
   };
   return (
     <div
@@ -122,20 +134,20 @@ const SkillsCard = () => {
   ];
 
   return (
-    <div className="skills-card mx-auto grid min-h-0 w-full max-w-4xl grid-cols-1 gap-4 md:max-h-[calc(100vh-6rem)] md:grid-cols-3 md:grid-rows-3 md:gap-5 md:overflow-y-auto">
+    <div className="skills-card mx-auto grid min-h-0 w-full max-w-4xl grid-cols-1 gap-4 md:min-h-0 md:flex-1 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-[clamp(0.5rem,2vh,1.25rem)]">
       {/* Programming Languages + Full Stack - large, top-left */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-2 md:row-span-2" size="lg">
-        <h2 className="mb-4 text-lg font-semibold uppercase text-white">
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.8125rem,2.2vh,1.125rem)] font-semibold uppercase text-white">
           Programming Languages
         </h2>
-        <div className="mb-4">
+        <div className="mb-[clamp(0.375rem,1.5vh,1rem)]">
           <SkillSection skills={programmingLanguages} size="lg" />
         </div>
-        <div className="w-full flex-1 rounded-lg border border-white/10 bg-white/5 p-6">
-          <h3 className="mb-4 text-sm font-semibold uppercase text-white/80">
+        <div className="w-full min-h-0 flex-1 rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.5rem)]">
+          <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
             Full Stack
           </h3>
-          <div className="grid grid-cols-3 justify-items-center gap-4">
+          <div className="grid grid-cols-3 justify-items-center gap-[clamp(0.375rem,1.4vh,1rem)]">
             {fullStack.map(({ icon, name, color }) => (
               <SkillItem
                 key={name}
@@ -151,7 +163,7 @@ const SkillsCard = () => {
 
       {/* Machine Learning - small, top-right */}
       <Card className="flex min-h-0 flex-col items-center text-center" size="sm">
-        <h2 className="mb-4 text-base font-semibold uppercase text-white">
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold uppercase text-white">
           Machine Learning
         </h2>
         <SkillSection skills={machineLearning} size="md" />
@@ -159,7 +171,7 @@ const SkillsCard = () => {
 
       {/* Data - small, middle-right */}
       <Card className="flex min-h-0 flex-col items-center text-center" size="sm">
-        <h2 className="mb-4 text-base font-semibold uppercase text-white">
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold uppercase text-white">
           Data
         </h2>
         <SkillSection skills={databases} size="md" />
@@ -167,22 +179,22 @@ const SkillsCard = () => {
 
       {/* Cloud & Data - long, full width bottom with sub-tiles */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-3" size="md">
-        <div className="flex w-full flex-1 flex-col gap-4 md:flex-row md:gap-6">
-          <div className="flex flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-7 text-center">
-            <h3 className="mb-4 text-sm font-semibold uppercase text-white/80">
+        <div className="flex w-full min-h-0 flex-1 flex-col gap-4 md:flex-row md:gap-[clamp(0.75rem,2.2vh,1.5rem)]">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
+            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
               DevOps
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-[clamp(0.375rem,1.4vh,1rem)]">
               {dataAndDevOps.map(({ icon, name, color }) => (
                 <SkillItem key={name} icon={icon} name={name} color={color} size="lg" />
               ))}
             </div>
           </div>
-          <div className="flex flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-7 text-center">
-            <h3 className="mb-4 text-sm font-semibold uppercase text-white/80">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
+            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
               Cloud
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-[clamp(0.375rem,1.4vh,1rem)]">
               {cloud.map(({ icon, name, color }) => (
                 <SkillItem key={name} icon={icon} name={name} color={color} size="lg" />
               ))}

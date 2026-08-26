@@ -87,16 +87,19 @@ const YEAR_TAGLINES = {
 
 // Card centers in SVG viewBox units (1000 x 600).
 // Row 1: three boxes, row 2: two boxes; the path snakes through them.
+// Rows sit at 25% / 75% of the stage: cards are centred on their anchor, so
+// each one can only grow to twice its anchor's distance from the nearest edge
+// before it spills over the header or off the bottom on a short laptop screen.
 const ANCHORS = [
-  { x: 160, y: 115 },
-  { x: 500, y: 115 },
-  { x: 840, y: 115 },
-  { x: 660, y: 485 },
-  { x: 320, y: 485 },
+  { x: 160, y: 150 },
+  { x: 500, y: 150 },
+  { x: 840, y: 150 },
+  { x: 660, y: 450 },
+  { x: 320, y: 450 },
 ];
 
 const SNAKE_PATH =
-  'M 160 115 L 840 115 C 990 115 990 485 840 485 L 320 485';
+  'M 160 150 L 840 150 C 990 150 990 450 840 450 L 320 450';
 
 const initialsOf = (company) =>
   company
@@ -268,17 +271,17 @@ const ExperienceSection = () => {
         className="relative hidden h-screen w-full flex-col overflow-hidden md:flex"
       >
         {/* Section header */}
-        <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-20">
+        <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-[clamp(4.75rem,11vh,5rem)]">
         {/* <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
             Where I&apos;ve worked
           </p> */}
-          <h2 className="text-center text-4xl uppercase leading-[0.9] text-white lg:text-5xl">
+          <h2 className="text-center text-[clamp(1.75rem,4.5vh,3rem)] uppercase leading-[0.9] text-white">
             Experience
           </h2>
         </div>
 
         {/* Timeline stage */}
-        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-8 pt-2">
+        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-[clamp(0.75rem,3vh,2rem)] pt-2">
           <div className="relative h-full w-full">
             {/* Snake line */}
             <svg
@@ -309,14 +312,14 @@ const ExperienceSection = () => {
             <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 text-center">
               <span
                 ref={yearRef}
-                className="font-Rajdhani text-6xl font-black leading-none text-[#35c19f] lg:text-7xl"
+                className="font-Rajdhani text-[clamp(2.5rem,8vh,4.5rem)] font-black leading-none text-[#35c19f]"
                 style={{ textShadow: `0 0 30px ${ACCENT}55` }}
               >
                 {timeline[0].year}
               </span>
               <span
                 ref={taglineRef}
-                className="text-xs font-medium uppercase tracking-[0.25em] text-[#35c19f]/70"
+                className="text-xs font-medium uppercase tracking-[0.25em] text-[#35c19f]/70 [@media(max-height:640px)]:hidden"
               >
                 {YEAR_TAGLINES[timeline[0].year]}
               </span>
@@ -344,14 +347,14 @@ const ExperienceSection = () => {
               return (
                 <div
                   key={exp.company}
-                  className="absolute z-20 w-[30%] -translate-x-1/2 -translate-y-1/2"
+                  className="absolute z-20 w-[31%] -translate-x-1/2 -translate-y-1/2"
                   style={{
                     left: `${ANCHORS[i].x / 10}%`,
                     top: `${ANCHORS[i].y / 6}%`,
                   }}
                 >
                   <div
-                    className={`relative rounded-lg border bg-[#0b0b0f] p-5 shadow-xl transition-all duration-500 ${
+                    className={`relative rounded-lg border bg-[#0b0b0f] p-[clamp(0.75rem,2.1vh,1.25rem)] shadow-xl transition-all duration-500 ${
                       active
                         ? 'scale-100 border-[#35c19f]/60 shadow-[0_0_35px_rgba(53,193,159,0.18)]'
                         : visited
@@ -370,13 +373,13 @@ const ExperienceSection = () => {
                         active ? 'opacity-100' : visited ? 'opacity-75' : 'opacity-60'
                       }`}
                     >
-                    <div className="flex items-center gap-4">
-                      <CompanyLogo exp={exp} className="h-14 w-14 text-base" />
+                    <div className="flex items-center gap-[clamp(0.625rem,1.8vh,1rem)]">
+                      <CompanyLogo exp={exp} className="size-[clamp(2.5rem,6vh,3.5rem)] text-base" />
                       <div className="min-w-0">
-                        <h3 className="truncate text-base font-semibold text-white lg:text-lg">
+                        <h3 className="truncate text-[clamp(0.875rem,2.1vh,1.125rem)] font-semibold text-white">
                           {exp.role}
                         </h3>
-                        <p className="truncate text-sm text-white/60">
+                        <p className="truncate text-[clamp(0.75rem,1.8vh,0.875rem)] text-white/60">
                           {exp.company} · {exp.location}
                         </p>
                         <p
@@ -388,11 +391,11 @@ const ExperienceSection = () => {
                         </p>
                       </div>
                     </div>
-                    <ul className="mt-4 space-y-2">
+                    <ul className="mt-[clamp(0.5rem,1.6vh,1rem)] space-y-[clamp(0.25rem,0.9vh,0.5rem)]">
                       {exp.highlights.map((h, j) => (
                         <li
                           key={j}
-                          className="flex gap-2.5 text-sm leading-snug text-white/80"
+                          className="flex gap-2.5 text-[clamp(0.6875rem,1.75vh,0.875rem)] leading-snug text-white/80"
                         >
                           <span
                             className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-500 ${

@@ -70,8 +70,11 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
   
+  /* Landscape 6:5 box. Both terms share the same vh/vw ratio, so whichever
+     one binds the box keeps its shape instead of going tall on a narrow or
+     short screen. */
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+    @apply absolute left-1/2 top-0 z-20 h-[min(50vh,30vw)] w-[min(60vh,36vw)] origin-center -translate-x-1/2 overflow-hidden rounded-3xl;
   }
 
   .liquid-ui { 

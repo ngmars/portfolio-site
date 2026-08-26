@@ -80,7 +80,7 @@ const AboutSection = () => {
                             decoding="async"
                         />
                         <div className="blur-overlay pointer-events-none absolute inset-0 bg-black/20 backdrop-blur-sm opacity-0" />
-                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 pt-24 overlay-divs opacity-0">
+                        <div className="overlay-divs absolute inset-0 flex flex-col items-center justify-center gap-4 pb-[clamp(0.75rem,3vh,2rem)] pt-[clamp(4.75rem,11vh,6rem)] opacity-0">
                             <SkillsCard />
                         </div>
 

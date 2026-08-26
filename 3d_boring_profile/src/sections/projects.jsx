@@ -52,12 +52,12 @@ const ProjectCard = ({ project, index, active }) => (
       }}
     />
     <div
-      className={`p-5 transition-opacity duration-500 lg:p-6 ${
+      className={`p-[clamp(0.75rem,2.2vh,1.5rem)] transition-opacity duration-500 ${
         active ? 'opacity-100' : 'opacity-50'
       }`}
     >
-      <div className="flex items-baseline gap-4">
-        <span className="font-Rajdhani text-5xl font-black leading-none text-white/15">
+      <div className="flex items-baseline gap-[clamp(0.625rem,1.8vh,1rem)]">
+        <span className="font-Rajdhani text-[clamp(1.75rem,5vh,3rem)] font-black leading-none text-white/15">
           {String(index + 1).padStart(2, '0')}
         </span>
         <div className="min-w-0">
@@ -68,7 +68,7 @@ const ProjectCard = ({ project, index, active }) => (
           >
             {project.tag}
           </p>
-          <h3 className="mt-1 text-xl font-semibold text-white lg:text-2xl">
+          <h3 className="mt-1 text-[clamp(1rem,2.6vh,1.5rem)] font-semibold text-white">
             {project.title}
           </h3>
         </div>
@@ -76,15 +76,17 @@ const ProjectCard = ({ project, index, active }) => (
       {/* Description collapses on inactive tiles so all three fit on screen */}
       <div
         className={`overflow-hidden transition-all duration-500 ${
-          active ? 'mt-3 max-h-72 opacity-100' : 'mt-0 max-h-0 opacity-0'
+          active
+            ? 'mt-[clamp(0.375rem,1.2vh,0.75rem)] max-h-[26vh] opacity-100'
+            : 'mt-0 max-h-0 opacity-0'
         }`}
       >
-        <p className="text-sm leading-relaxed text-white/70">
+        <p className="text-[clamp(0.75rem,1.8vh,0.875rem)] leading-relaxed text-white/70">
           {project.description}
         </p>
       </div>
       {/* Tech pills stay visible even when the tile is collapsed */}
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-[clamp(0.5rem,1.6vh,1rem)] flex flex-wrap gap-2">
         {project.tech.map((t) => (
           <span
             key={t}
@@ -187,24 +189,28 @@ const ProjectsSection = () => {
         className="relative hidden h-screen w-full flex-col overflow-hidden md:flex"
       >
         {/* Section header */}
-        <div className="flex flex-col items-center gap-2 px-4 pb-4 pt-20">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
+        <div className="flex flex-col items-center gap-[clamp(0.25rem,1vh,0.5rem)] px-4 pb-[clamp(0.5rem,2vh,1rem)] pt-[clamp(4.75rem,11vh,5rem)]">
+          <p className="text-[clamp(0.6875rem,1.6vh,0.875rem)] font-medium uppercase tracking-[0.3em] text-[#35c19f]">
             What I&apos;ve been building
           </p>
-          <h2 className="text-center text-4xl uppercase leading-[0.9] text-white lg:text-5xl">
+          <h2 className="text-center text-[clamp(1.75rem,4.5vh,3rem)] uppercase leading-[0.9] text-white">
             Recent Projects
           </h2>
         </div>
 
         {/* Stage */}
-        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-10">
+        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-[clamp(0.75rem,3vh,2.5rem)]">
           <div className="relative h-full w-full" style={{ perspective: '1400px' }}>
             {/* Workshop image — starts centered, ends angled on the left */}
-            <div ref={imgWrapRef} className="absolute top-1/2">
+            <div
+              ref={imgWrapRef}
+              className="absolute top-1/2 max-h-full"
+              style={{ aspectRatio: '3 / 2' }}
+            >
               <img
                 src="img/projects.jpeg"
                 alt="Workshop illustration"
-                className="w-full rounded-xl border border-white/15 object-cover shadow-2xl"
+                className="h-full w-full rounded-xl border border-white/15 object-cover shadow-2xl"
                 loading="lazy"
                 decoding="async"
               />
@@ -216,7 +222,7 @@ const ProjectsSection = () => {
 
             {/* All three tiles, highlighted one by one on scroll */}
             <div className="absolute inset-y-0 left-[42%] right-0 flex items-center">
-              <div className="flex w-full flex-col gap-4">
+              <div className="flex w-full flex-col gap-[clamp(0.5rem,1.6vh,1rem)]">
                 {projects.map((project, i) => (
                   <div key={project.title} className="proj-slide">
                     <ProjectCard
