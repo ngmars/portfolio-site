@@ -12,6 +12,13 @@ const HIGHLIGHT_AT = [0, 0.55, 0.78];
 
 const projects = [
   {
+    title: 'Super-Resolution Diffusion Model',
+    tag: 'Deep Learning · Medical Imaging',
+    description:
+      'A UNet-based diffusion model that generates high-resolution radiation dose distribution maps for cancer treatment planning. Trained to distinguish different body tissue types and predict how radiation propagates through each, producing realistic dose-spread imagery.',
+    tech: ['PyTorch', 'UNet', 'Diffusion Models'],
+  },
+  {
     title: 'PubMed Research Agent',
     tag: 'LLM Agents · RAG',
     description:
@@ -24,14 +31,7 @@ const projects = [
     description:
       'A multi-step autonomous agent that debugs code with minimal human input. It analyzes a codebase to localize faults, generates targeted tests to reproduce failures, and applies verified fixes — all coordinated through structured tool orchestration.',
     tech: ['Python', 'OpenAI API', 'Tool Orchestration'],
-  },
-  {
-    title: 'Super-Resolution Diffusion Model',
-    tag: 'Deep Learning · Medical Imaging',
-    description:
-      'A UNet-based diffusion model that generates high-resolution radiation dose distribution maps for cancer treatment planning. Trained to distinguish different body tissue types and predict how radiation propagates through each, producing realistic dose-spread imagery.',
-    tech: ['PyTorch', 'UNet', 'Diffusion Models'],
-  },
+  }
 ];
 
 const ProjectCard = ({ project, index, active }) => (

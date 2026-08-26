@@ -38,7 +38,7 @@ const experiences = [
   },
   {
     company: 'WorkIndia',
-    role: 'Software Engineer',
+    role: 'Software Engineer Intern',
     location: 'Bangalore, India',
     period: 'Jan 2022 – Mar 2022',
     year: '2022',

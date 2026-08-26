@@ -42,6 +42,11 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
       icon: 'size-[clamp(1.625rem,4.3vh,2.25rem)]',
       text: 'text-[clamp(9px,1.6vh,12px)]',
     },
+    xl: {
+      wrapper: 'size-[clamp(2.5rem,7vh,4rem)] shrink-0',
+      icon: 'size-[clamp(2rem,5.8vh,3.25rem)]',
+      text: 'text-[clamp(10px,1.8vh,14px)]',
+    },
   };
   const { wrapper, icon: iconSize, text } = config[size];
   return (
@@ -143,18 +148,18 @@ const SkillsCard = () => {
         <div className="mb-[clamp(0.375rem,1.5vh,1rem)]">
           <SkillSection skills={programmingLanguages} size="lg" />
         </div>
-        <div className="w-full min-h-0 flex-1 rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.5rem)]">
+        <div className="flex w-full min-h-0 flex-1 flex-col rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.5rem)]">
           <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
             Full Stack
           </h3>
-          <div className="grid grid-cols-3 justify-items-center gap-[clamp(0.375rem,1.4vh,1rem)]">
+          <div className="grid min-h-0 flex-1 grid-cols-3 grid-rows-2 place-items-center gap-[clamp(0.375rem,1.4vh,1rem)]">
             {fullStack.map(({ icon, name, color }) => (
               <SkillItem
                 key={name}
                 icon={icon}
                 name={name}
                 color={color}
-                size="lg"
+                size="xl"
               />
             ))}
           </div>
