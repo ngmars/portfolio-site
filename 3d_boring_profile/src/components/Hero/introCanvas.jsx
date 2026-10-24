@@ -8,11 +8,14 @@ import { Instances, Computers } from './computers'
 import CanvasLoader from '../canvasLoader'
 import useInView from '../../hooks/useInView'
 
-function CameraRig({ cameraZ }) {
+function CameraRig({ cameraZ, still }) {
     useFrame((state, delta) => {
+        // Reduced motion: hold the camera at its resting pose instead of following the pointer
+        const px = still ? 0 : state.pointer.x
+        const py = still ? 0 : state.pointer.y
         easing.damp3(
             state.camera.position,
-            [-1 + (state.pointer.x * state.viewport.width) / 3, (1 + state.pointer.y) / 2, cameraZ],
+            [-1 + (px * state.viewport.width) / 3, (1 + py) / 2, cameraZ],
             0.5,
             delta
         )
@@ -23,11 +26,12 @@ function CameraRig({ cameraZ }) {
 
 const IntroCanvas = () => {
     const isMobile = useMediaQuery({ maxWidth: 767 })
+    const reducedMotion = useMediaQuery({ query: '(prefers-reduced-motion: reduce)' })
     const cameraZ = isMobile ? 8.5 : 5.5
     const { ref, inView } = useInView('100px', true)
 
     return (
-        <div ref={ref} className="absolute left-[5vw] top-0 h-[90vh] w-[90vw]">
+        <div ref={ref} className="absolute inset-0">
             <Canvas
                 shadows={!isMobile}
                 dpr={isMobile ? 1 : [1, 1.25]}
@@ -81,7 +85,7 @@ const IntroCanvas = () => {
                             rotation={[-3.1, 3.1, -3.1]}
                         />
                         <pointLight distance={1.5} intensity={1} position={[-0.15, 0.7, 0]} color="orange" />
-                        <CameraRig cameraZ={cameraZ} />
+                        <CameraRig cameraZ={cameraZ} still={reducedMotion} />
                         {!isMobile && <BakeShadows />}
                     </group>
                 </Suspense>

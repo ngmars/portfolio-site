@@ -57,7 +57,7 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
       >
         <Icon className={`${iconSize} shrink-0`} />
       </div>
-      <span className={`max-w-[5.5rem] truncate text-center font-medium text-white/90 ${text}`}>
+      <span className={`max-w-[5.5rem] truncate text-center font-medium text-white/70 ${text}`}>
         {name}
       </span>
     </div>
@@ -67,7 +67,7 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
 const SkillSection = ({ title, skills, size = 'md' }) => (
   <div className="min-w-0 overflow-hidden text-center">
     {title && (
-      <h3 className="mb-[clamp(0.25rem,1.2vh,0.75rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase tracking-wider text-white/70">
+      <h3 className="mb-[clamp(0.25rem,1.2vh,0.75rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
         {title}
       </h3>
     )}
@@ -87,7 +87,7 @@ const Card = ({ children, className = '', size = 'md' }) => {
   };
   return (
     <div
-      className={`group overflow-hidden rounded-lg border border-white/20 bg-black/70 shadow-xl backdrop-blur-md transition-colors duration-200 ${padding[size]} ${className}`}
+      className={`group overflow-hidden rounded-[24px] bg-surface-card md:bg-black/60 md:backdrop-blur-xl transition-colors duration-200 ${padding[size]} ${className}`}
     >
       {children}
     </div>
@@ -139,18 +139,18 @@ const SkillsCard = () => {
   ];
 
   return (
-    <div className="skills-card mx-auto grid min-h-0 w-full max-w-4xl grid-cols-1 gap-4 md:min-h-0 md:flex-1 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-[clamp(0.5rem,2vh,1.25rem)]">
+    <div className="mx-auto grid min-h-0 w-full max-w-4xl md:w-[90vw] md:px-4 grid-cols-1 gap-4 md:min-h-0 md:flex-1 md:grid-cols-3 md:grid-rows-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-[clamp(0.5rem,2vh,1.25rem)]">
       {/* Programming Languages + Full Stack - large, top-left */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-2 md:row-span-2" size="lg">
-        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.8125rem,2.2vh,1.125rem)] font-semibold uppercase text-white">
-          Programming Languages
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.8125rem,2.2vh,1.125rem)] font-semibold tracking-[-0.01em] text-white">
+          Languages
         </h2>
         <div className="mb-[clamp(0.375rem,1.5vh,1rem)]">
           <SkillSection skills={programmingLanguages} size="lg" />
         </div>
-        <div className="flex w-full min-h-0 flex-1 flex-col rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.5rem)]">
-          <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
-            Full Stack
+        <div className="flex w-full min-h-0 flex-1 flex-col p-[clamp(0.25rem,1vh,0.75rem)]">
+          <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
+            Full stack
           </h3>
           <div className="grid min-h-0 flex-1 grid-cols-3 grid-rows-2 place-items-center gap-[clamp(0.375rem,1.4vh,1rem)]">
             {fullStack.map(({ icon, name, color }) => (
@@ -168,15 +168,15 @@ const SkillsCard = () => {
 
       {/* Machine Learning - small, top-right */}
       <Card className="flex min-h-0 flex-col items-center text-center" size="sm">
-        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold uppercase text-white">
-          Machine Learning
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold tracking-[-0.01em] text-white">
+          Machine learning
         </h2>
         <SkillSection skills={machineLearning} size="md" />
       </Card>
 
       {/* Data - small, middle-right */}
       <Card className="flex min-h-0 flex-col items-center text-center" size="sm">
-        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold uppercase text-white">
+        <h2 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.75rem,2vh,1rem)] font-semibold tracking-[-0.01em] text-white">
           Data
         </h2>
         <SkillSection skills={databases} size="md" />
@@ -185,8 +185,8 @@ const SkillsCard = () => {
       {/* Cloud & Data - long, full width bottom with sub-tiles */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-3" size="md">
         <div className="flex w-full min-h-0 flex-1 flex-col gap-4 md:flex-row md:gap-[clamp(0.75rem,2.2vh,1.5rem)]">
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
-            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-[clamp(0.25rem,1vh,0.75rem)] text-center">
+            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
               DevOps
             </h3>
             <div className="flex flex-wrap justify-center gap-[clamp(0.375rem,1.4vh,1rem)]">
@@ -195,8 +195,8 @@ const SkillsCard = () => {
               ))}
             </div>
           </div>
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-lg border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
-            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold uppercase text-white/80">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-[clamp(0.25rem,1vh,0.75rem)] text-center">
+            <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
               Cloud
             </h3>
             <div className="flex flex-wrap justify-center gap-[clamp(0.375rem,1.4vh,1rem)]">

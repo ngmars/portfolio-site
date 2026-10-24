@@ -1,141 +1,87 @@
-@import url('https://fonts.cdnfonts.com/css/general-sans');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-font-family: 'Rajdhani';
-src: url('./fonts/TTF/Rajdhani-Variable.ttf') format('truetype');
-font-weight: 900;
-font-display: swap;
-}
-
-* {
-  scroll-behavior: smooth;
-}
-
-/* GSAP ScrollTrigger scrub needs instant scroll */
+/* GSAP ScrollTrigger scrub needs instant scroll, so smooth scrolling is
+   opt-in for anchor jumps only and off for reduced-motion users. */
 html {
   scroll-behavior: auto;
+  scroll-padding-top: 48px;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+/* `clip` (not `hidden`) so body doesn't become a scroll container, which
+   would break position: sticky in the experience section */
 html,
 body {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
-  background: #000000;
-  font-family: 'General Sans', sans-serif;
+  @apply bg-surface font-sans text-[#f5f5f7] antialiased;
 }
 
-@layer utilities {
-  .c-space {
-    @apply sm:px-10 px-5;
+@layer components {
+  /* ---------- Type scale ---------- */
+  .headline-xl {
+    @apply text-[clamp(48px,8vw,96px)] font-semibold leading-[1.05] tracking-[-0.025em];
   }
 
-  .button-styles {
-    @apply
-    transition-colors
-    p-2
-    rounded-full
-    bg-[#35c19f]/30 
-    border 
-    border-white/20 
-    shadow-lg 
-    backdrop-blur-xl
-  }
-  .nitis-gopinath-nav {
-    @apply 
-    font-bold 
-    text-xl 
-    hover:text-white 
-    transition-colors
+  .headline-lg {
+    @apply text-[clamp(40px,5.5vw,64px)] font-semibold leading-[1.05] tracking-[-0.025em];
   }
 
-  .scroll-down-arrow {
-    @apply 
-    z-[100]
-    absolute bottom-20 left-1/2 transform -translate-x-1/2
-  }
-  /* hero section */
-  .hero_tag {
-    @apply text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-Rajdhani font-black !leading-snug;
+  .eyebrow {
+    @apply text-[clamp(17px,1.6vw,21px)] font-semibold tracking-[-0.01em] text-accent;
   }
 
-  /* about section */ 
- .mask-clip-path {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  .body-lg {
+    @apply text-[clamp(19px,1.7vw,21px)] leading-[1.4] tracking-[-0.01em] text-muted;
   }
-  
+
+  /* ---------- Links & buttons ---------- */
+  .link-more {
+    @apply inline-flex items-center gap-1 text-[17px] text-accent transition-colors duration-200 ease-apple hover:underline;
+  }
+
+  .link-more::after {
+    content: '›';
+    @apply text-[1.15em] leading-none;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-[17px] font-medium text-black transition-transform duration-300 ease-apple hover:scale-[1.03] active:scale-[0.98];
+  }
+
+  /* ---------- Surfaces ---------- */
+  .card-apple {
+    @apply overflow-hidden rounded-[28px] bg-surface-card;
+  }
+
   /* Landscape 6:5 box. Both terms share the same vh/vw ratio, so whichever
      one binds the box keeps its shape instead of going tall on a narrow or
      short screen. */
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[min(50vh,30vw)] w-[min(60vh,36vw)] origin-center -translate-x-1/2 overflow-hidden rounded-3xl;
+    @apply absolute left-1/2 top-0 z-20 h-[min(50vh,30vw)] w-[min(60vh,36vw)] origin-center -translate-x-1/2 overflow-hidden rounded-[28px];
   }
 
-  .liquid-ui { 
-      @apply inline-flex 
-      items-center 
-      justify-center 
-      align-middle 
-      select-none 
-      font-medium 
-      text-center 
-      px-4 
-      py-2 
-      text-white 
-      text-sm 
-      font-medium 
-      rounded-lg 
-      border 
-      border-white/50 
-      backdrop-blur-sm 
-      shadow-[inset_0_1px_0px_rgba(255,255,255,0.75),0_0_9px_rgba(0,0,0,0.2),0_3px_8px_rgba(0,0,0,0.15)] 
-      hover:bg-white/30 
-      transition-all 
-      duration-300 
-      before:absolute 
-      before:inset-0 
-      before:rounded-lg 
-      before:bg-gradient-to-br 
-      before:from-white/60 
-      before:via-transparent 
-      before:to-transparent 
-      before:opacity-70 
-      before:pointer-events-none 
-      after:absolute 
-      after:inset-0 
-      after:rounded-lg 
-      after:bg-gradient-to-tl 
-      after:from-white/30 
-      after:via-transparent 
-      after:to-transparent 
-      after:opacity-50 
-      after:pointer-events-none 
-      transition 
-  }
-
-  .skills-card {
-    @apply 
-    w-[90vw]
-    max-w-4xl
-    px-4
+  .mask-clip-path {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
-
 /* Spinner shown while a 3D canvas loads (used by CanvasLoader) */
 .canvas-loader {
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: 3px solid rgba(53, 193, 159, 0.2);
-  border-top-color: #35c19f;
-  box-shadow: 0 0 24px rgba(53, 193, 159, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top-color: rgba(255, 255, 255, 0.7);
   animation: canvas-spin 0.9s linear infinite;
 }
 
@@ -144,29 +90,3 @@ body {
     transform: rotate(360deg);
   }
 }
-
-/* Swipe hint on the landing — dot glides left to right and back */
-@keyframes swipe-x {
-  0%,
-  100% {
-    transform: translateX(-32px);
-  }
-  50% {
-    transform: translateX(32px);
-  }
-}
-
-.animate-swipe-x {
-  animation: swipe-x 2s ease-in-out infinite;
-}
-
-.arrow-gradient {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.1) 10%,
-    rgba(255, 255, 255, 0.000025) 50%,
-    rgba(255, 255, 255, 0.000025) 50%,
-    rgba(255, 255, 255, 0.025) 100%
-  );
-}
-

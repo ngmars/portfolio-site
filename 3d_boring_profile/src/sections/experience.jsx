@@ -1,13 +1,12 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
+import { REVEAL, ANY_MOTION } from '../constants/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACCENT = '#35c19f';
-
-// Newest first (used for the mobile stacked list)
+// Newest first
 const experiences = [
   {
     company: 'DNV',
@@ -76,31 +75,6 @@ const experiences = [
   },
 ];
 
-// Newest first for the snake timeline: row 1 left→right, row 2 right→left
-const timeline = experiences;
-
-const YEAR_TAGLINES = {
-  2024: 'My most recent experience',
-  2022: 'Levelling up in the industry',
-  2021: 'Where it all started',
-};
-
-// Card centers in SVG viewBox units (1000 x 600).
-// Row 1: three boxes, row 2: two boxes; the path snakes through them.
-// Rows sit at 25% / 75% of the stage: cards are centred on their anchor, so
-// each one can only grow to twice its anchor's distance from the nearest edge
-// before it spills over the header or off the bottom on a short laptop screen.
-const ANCHORS = [
-  { x: 160, y: 150 },
-  { x: 500, y: 150 },
-  { x: 840, y: 150 },
-  { x: 660, y: 450 },
-  { x: 320, y: 450 },
-];
-
-const SNAKE_PATH =
-  'M 160 150 L 840 150 C 990 150 990 450 840 450 L 320 450';
-
 const initialsOf = (company) =>
   company
     .split(' ')
@@ -113,7 +87,7 @@ const CompanyLogo = ({ exp, className = '' }) => {
   if (!exp.logo) {
     return (
       <div
-        className={`flex shrink-0 items-center justify-center rounded-xl border border-white/20 bg-black/70 font-semibold text-white/80 shadow-xl backdrop-blur-md ${className}`}
+        className={`flex shrink-0 items-center justify-center rounded-2xl bg-white font-semibold text-ink-muted shadow-sm ${className}`}
       >
         {initialsOf(exp.company)}
       </div>
@@ -121,7 +95,7 @@ const CompanyLogo = ({ exp, className = '' }) => {
   }
   return (
     <div
-      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white p-1.5 shadow-xl ${className}`}
+      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white p-2 shadow-sm ${className}`}
     >
       <img
         src={exp.logo}
@@ -136,335 +110,93 @@ const CompanyLogo = ({ exp, className = '' }) => {
 
 const ExperienceSection = () => {
   const sectionRef = useRef(null);
-  const pinRef = useRef(null);
-  const pathRef = useRef(null);
-  const trailRef = useRef(null);
-  const pointerRef = useRef(null);
   const yearRef = useRef(null);
-  const taglineRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
+      // Sticky year swaps as each role reaches the middle of the screen
+      const setYear = (year) => {
+        const el = yearRef.current;
+        if (!el || el.textContent === year) return;
+        el.textContent = year;
+        gsap.fromTo(el, { autoAlpha: 0.2 }, { autoAlpha: 1, duration: 0.4, ease: 'power2.out', overwrite: true });
+      };
 
-      // ---------- Desktop: pinned snake timeline ----------
-      mm.add('(min-width: 768px)', () => {
-        const path = pathRef.current;
-        const trail = trailRef.current;
-        const pointer = pointerRef.current;
-        if (!path || !trail || !pointer) return;
-
-        const total = path.getTotalLength();
-
-        // Progress fraction along the path for each card center
-        const fractions = ANCHORS.map((a) => {
-          let best = 0;
-          let bestD = Infinity;
-          for (let i = 0; i <= 400; i++) {
-            const p = path.getPointAtLength((i / 400) * total);
-            const d = (p.x - a.x) ** 2 + (p.y - a.y) ** 2;
-            if (d < bestD) {
-              bestD = d;
-              best = i / 400;
-            }
-          }
-          return best;
+      gsap.utils.toArray('.exp-role').forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 55%',
+          end: 'bottom 55%',
+          onEnter: () => setYear(el.dataset.year),
+          onEnterBack: () => setYear(el.dataset.year),
         });
-
-        trail.style.strokeDasharray = `${total}`;
-        trail.style.strokeDashoffset = `${total}`;
-
-        let lastIndex = -1;
-        const update = (progress) => {
-          const p = Math.max(0, Math.min(1, progress));
-          const len = p * total;
-          const point = path.getPointAtLength(len);
-          // viewBox is 1000 x 600 → convert to container percentages
-          pointer.style.left = `${point.x / 10}%`;
-          pointer.style.top = `${point.y / 6}%`;
-          trail.style.strokeDashoffset = `${total * (1 - p)}`;
-
-          let idx = 0;
-          for (let i = 0; i < fractions.length; i++) {
-            if (p >= fractions[i] - 0.02) idx = i;
-          }
-          if (idx !== lastIndex) {
-            lastIndex = idx;
-            const yearEl = yearRef.current;
-            const taglineEl = taglineRef.current;
-            if (yearEl && yearEl.textContent !== timeline[idx].year) {
-              yearEl.textContent = timeline[idx].year;
-              if (taglineEl) {
-                taglineEl.textContent = YEAR_TAGLINES[timeline[idx].year] ?? '';
-              }
-              gsap.fromTo(
-                [yearEl, taglineEl],
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 0.35, ease: 'power2.out', overwrite: true }
-              );
-            }
-            setActiveIndex(idx);
-          }
-        };
-
-        update(0);
-
-        const st = ScrollTrigger.create({
-          trigger: pinRef.current,
-          start: 'top top',
-          end: '+=250%',
-          pin: true,
-          onUpdate: (self) => update(self.progress),
-          snap: {
-            snapTo: fractions,
-            duration: { min: 0.2, max: 0.5 },
-            delay: 0.1,
-            ease: 'power1.inOut',
-          },
-        });
-
-        return () => st.kill();
       });
 
-      // ---------- Mobile: free-scrolling reveal animations ----------
-      mm.add('(max-width: 767px)', () => {
-        gsap.utils.toArray('.m-progress').forEach((el) => {
-          gsap.fromTo(
-            el,
-            { scaleY: 0 },
-            {
-              scaleY: 1,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: el.parentElement,
-                start: 'top 65%',
-                end: 'bottom 65%',
-                scrub: 0.4,
-              },
-            }
-          );
-        });
-        gsap.utils.toArray('.m-card').forEach((el) => {
+      const mm = gsap.matchMedia();
+      mm.add(ANY_MOTION, () => {
+        gsap.utils.toArray('.exp-reveal').forEach((el) => {
           gsap.from(el, {
-            autoAlpha: 0,
-            y: 40,
-            duration: 0.6,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
+            ...REVEAL,
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
           });
         });
       });
+
+      // Sections lazy-load in any order; re-measure so earlier pins don't leave stale trigger positions
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     },
     { scope: sectionRef }
   );
 
   return (
-    <section id="experience" ref={sectionRef} className="relative w-full">
-      {/* ---------- Desktop: one-screen pinned snake timeline ---------- */}
-      <div
-        ref={pinRef}
-        className="relative hidden h-screen w-full flex-col overflow-hidden md:flex"
-      >
+    <section id="experience" ref={sectionRef} className="relative w-full bg-surface-light py-32 text-ink">
+      <div className="mx-auto max-w-[980px] px-4">
         {/* Section header */}
-        <div className="flex flex-col items-center gap-2 px-4 pb-2 pt-[clamp(4.75rem,11vh,5rem)]">
-        {/* <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
-            Where I&apos;ve worked
-          </p> */}
-          <h2 className="text-center text-[clamp(1.75rem,4.5vh,3rem)] uppercase leading-[0.9] text-white">
-            Experience
-          </h2>
+        <div className="exp-reveal">
+          <p className="eyebrow text-accent-ink">Experience</p>
+          <h2 className="headline-lg mt-2 max-w-3xl">Five roles. One thread: data.</h2>
         </div>
 
-        {/* Timeline stage */}
-        <div className="relative mx-auto w-full max-w-7xl flex-1 px-8 pb-[clamp(0.75rem,3vh,2rem)] pt-2">
-          <div className="relative h-full w-full">
-            {/* Snake line */}
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 1000 600"
-              preserveAspectRatio="none"
-            >
-              <path
-                ref={pathRef}
-                d={SNAKE_PATH}
-                fill="none"
-                stroke="rgba(255,255,255,0.12)"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-              <path
-                ref={trailRef}
-                d={SNAKE_PATH}
-                fill="none"
-                stroke={ACCENT}
-                strokeWidth="3"
-                strokeLinecap="round"
-                style={{ filter: `drop-shadow(0 0 6px ${ACCENT})` }}
-              />
-            </svg>
-
-            {/* Year readout — sits between the two rows, follows the scroll */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 text-center">
+        <div className="mt-20 md:grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-16">
+          {/* Desktop: sticky year */}
+          <div className="hidden md:block">
+            <div className="sticky top-32">
               <span
                 ref={yearRef}
-                className="font-Rajdhani text-[clamp(2.5rem,8vh,4.5rem)] font-black leading-none text-[#35c19f]"
-                style={{ textShadow: `0 0 30px ${ACCENT}55` }}
+                className="block text-[clamp(80px,12vw,160px)] font-semibold leading-none tracking-[-0.04em] text-ink"
               >
-                {timeline[0].year}
-              </span>
-              <span
-                ref={taglineRef}
-                className="text-xs font-medium uppercase tracking-[0.25em] text-[#35c19f]/70 [@media(max-height:640px)]:hidden"
-              >
-                {YEAR_TAGLINES[timeline[0].year]}
+                {experiences[0].year}
               </span>
             </div>
-
-            {/* Pointer riding the line (rendered below the tiles so it never crosses them) */}
-            <div
-              ref={pointerRef}
-              className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${ANCHORS[0].x / 10}%`, top: `${ANCHORS[0].y / 6}%` }}
-            >
-              <div className="relative flex h-5 w-5 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#35c19f]/50" />
-                <span
-                  className="relative inline-flex h-3.5 w-3.5 rounded-full bg-[#35c19f]"
-                  style={{ boxShadow: `0 0 16px ${ACCENT}` }}
-                />
-              </div>
-            </div>
-
-            {/* Experience boxes (solid background so the line passes behind, not through) */}
-            {timeline.map((exp, i) => {
-              const active = i === activeIndex;
-              const visited = i < activeIndex;
-              return (
-                <div
-                  key={exp.company}
-                  className="absolute z-20 w-[31%] -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    left: `${ANCHORS[i].x / 10}%`,
-                    top: `${ANCHORS[i].y / 6}%`,
-                  }}
-                >
-                  <div
-                    className={`relative rounded-lg border bg-[#0b0b0f] p-[clamp(0.75rem,2.1vh,1.25rem)] shadow-xl transition-all duration-500 ${
-                      active
-                        ? 'scale-100 border-[#35c19f]/60 shadow-[0_0_35px_rgba(53,193,159,0.18)]'
-                        : visited
-                          ? 'scale-[0.97] border-[#35c19f]/30'
-                          : 'scale-[0.97] border-white/15'
-                    }`}
-                  >
-                    {/* Visited badge — marks tiles the timeline has already crossed */}
-                    {visited && (
-                      <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full border border-[#35c19f]/50 bg-[#0b0b0f] text-[11px] font-bold text-[#35c19f] shadow-[0_0_12px_rgba(53,193,159,0.35)]">
-                        ✓
-                      </span>
-                    )}
-                    <div
-                      className={`transition-opacity duration-500 ${
-                        active ? 'opacity-100' : visited ? 'opacity-75' : 'opacity-60'
-                      }`}
-                    >
-                    <div className="flex items-center gap-[clamp(0.625rem,1.8vh,1rem)]">
-                      <CompanyLogo exp={exp} className="size-[clamp(2.5rem,6vh,3.5rem)] text-base" />
-                      <div className="min-w-0">
-                        <h3 className="truncate text-[clamp(0.875rem,2.1vh,1.125rem)] font-semibold text-white">
-                          {exp.role}
-                        </h3>
-                        <p className="truncate text-[clamp(0.75rem,1.8vh,0.875rem)] text-white/60">
-                          {exp.company} · {exp.location}
-                        </p>
-                        <p
-                          className={`text-xs font-medium tracking-wide transition-colors duration-500 ${
-                            active ? 'text-[#35c19f]' : 'text-[#35c19f]/60'
-                          }`}
-                        >
-                          {exp.period}
-                        </p>
-                      </div>
-                    </div>
-                    <ul className="mt-[clamp(0.5rem,1.6vh,1rem)] space-y-[clamp(0.25rem,0.9vh,0.5rem)]">
-                      {exp.highlights.map((h, j) => (
-                        <li
-                          key={j}
-                          className="flex gap-2.5 text-[clamp(0.6875rem,1.75vh,0.875rem)] leading-snug text-white/80"
-                        >
-                          <span
-                            className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-500 ${
-                              active ? 'bg-[#35c19f]' : 'bg-white/30'
-                            }`}
-                          />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
           </div>
-        </div>
-      </div>
 
-      {/* ---------- Mobile: left spine, stacked cards ---------- */}
-      <div className="relative px-4 pb-24 md:hidden">
-        <div className="flex flex-col items-center gap-3 pb-12 pt-24">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#35c19f]">
-            Where I&apos;ve worked
-          </p>
-          <h2 className="text-center text-4xl uppercase leading-[0.9] text-white">
-            Experience
-          </h2>
-        </div>
-        <div className="relative">
-          <div className="pointer-events-none absolute bottom-0 left-[23px] top-0 w-px bg-white/10" />
-          <div
-            className="m-progress pointer-events-none absolute bottom-0 left-[22px] top-0 w-[3px] origin-top rounded-full"
-            style={{
-              background: `linear-gradient(to bottom, ${ACCENT}, ${ACCENT}66)`,
-              boxShadow: `0 0 10px ${ACCENT}80`,
-            }}
-          />
-          <div className="space-y-10">
+          {/* Roles */}
+          <div className="space-y-24">
             {experiences.map((exp) => (
-              <div key={exp.company} className="relative pl-16">
-                <div className="absolute left-0 top-0">
-                  <CompanyLogo exp={exp} className="h-12 w-12 text-sm" />
-                </div>
-                <div className="m-card rounded-lg border border-white/20 bg-black/70 p-5 shadow-xl backdrop-blur-md">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                    <h3 className="text-lg font-semibold text-white">
+              <article key={exp.company} data-year={exp.year} className="exp-role exp-reveal">
+                {/* Mobile: year inline above each role */}
+                <p className="mb-3 text-[40px] font-semibold leading-none tracking-[-0.03em] text-ink md:hidden">
+                  {exp.year}
+                </p>
+                <div className="flex items-center gap-4">
+                  <CompanyLogo exp={exp} className="h-14 w-14 text-sm" />
+                  <div className="min-w-0">
+                    <h3 className="text-[28px] font-semibold leading-tight tracking-[-0.02em]">
                       {exp.role}
                     </h3>
-                    <span className="rounded-full border border-[#35c19f]/30 bg-[#35c19f]/10 px-3 py-0.5 text-[11px] font-medium tracking-wide text-[#35c19f]">
-                      {exp.period}
-                    </span>
+                    <p className="mt-1 text-[15px] text-ink-muted">
+                      {exp.company} · {exp.location} · {exp.period}
+                    </p>
                   </div>
-                  <p className="mt-1 text-sm text-white/60">
-                    {exp.company} · {exp.location}
-                  </p>
-                  <ul className="mt-4 space-y-2.5">
-                    {exp.highlights.map((h, i) => (
-                      <li
-                        key={i}
-                        className="flex gap-2.5 text-[13px] leading-relaxed text-white/80"
-                      >
-                        <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#35c19f]/70" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
+                <div className="mt-6 space-y-3">
+                  {exp.highlights.map((h, i) => (
+                    <p key={i} className="text-[17px] leading-[1.5] text-ink/80">
+                      {h}.
+                    </p>
+                  ))}
+                </div>
+              </article>
             ))}
           </div>
         </div>

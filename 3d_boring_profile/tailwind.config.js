@@ -4,28 +4,39 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        generalsans: ['General Sans', 'sans-serif'],
-        Rajdhani: "Rajdhani"
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"SF Pro Display"',
+          '"SF Pro Text"',
+          'Inter',
+          'system-ui',
+          'sans-serif',
+        ],
       },
       colors: {
-        black: {
-          DEFAULT: '#000',
-          100: '#010103',
-          200: '#0E0E10',
-          300: '#1C1C21',
-          500: '#3A3A49',
-          600: '#1A1A1A',
+        // Brand accent — links and the primary button only.
+        // `ink` is the darker variant for text on light surfaces.
+        accent: {
+          DEFAULT: '#35c19f',
+          ink: '#0b7a5f',
         },
-        white: {
-          DEFAULT: '#FFFFFF',
-          800: '#E4E4E6',
-          700: '#D6D9E9',
-          600: '#AFB0B6',
-          500: '#62646C',
+        // Text on light surfaces
+        ink: {
+          DEFAULT: '#1d1d1f',
+          muted: '#6e6e73',
         },
+        surface: {
+          DEFAULT: '#000000',
+          raised: '#161617',
+          card: '#1d1d1f',
+          light: '#f5f5f7',
+        },
+        // Secondary text on dark surfaces
+        muted: '#86868b',
       },
-      backgroundImage: {
-        terminal: "url('/assets/terminal.png')",
+      transitionTimingFunction: {
+        apple: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       },
     },
   },

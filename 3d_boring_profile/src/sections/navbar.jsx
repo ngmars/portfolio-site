@@ -1,25 +1,41 @@
 import React from 'react';
+import { navLinks } from '../constants/navbar_constants';
+import { LINKS } from '../constants/links';
 
 const Navbar = () => {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white">
-            <div className="flex items-center px-5 py-4">
-                    <a href="#home" className="group flex items-center gap-3">
-                        {/* Monogram badge */}
-                        <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#35c19f]/40 bg-[#35c19f]/10 font-Rajdhani text-lg font-black leading-none text-[#35c19f] shadow-[0_0_15px_rgba(53,193,159,0.25)] transition-shadow duration-300 group-hover:shadow-[0_0_25px_rgba(53,193,159,0.5)]">
-                            NG
-                        </span>
-                        {/* Name with accent underline on hover */}
-                        <span className="flex flex-col leading-none">
-                            <span className="font-Rajdhani text-xl font-black uppercase tracking-[0.2em]">
-                                Nitish <span className="text-[#35c19f]">Gopinath</span>
-                            </span>
-                            <span className="mt-1 h-px w-0 bg-gradient-to-r from-[#35c19f] to-transparent transition-all duration-500 group-hover:w-full" />
-                        </span>
+        <header className="fixed inset-x-0 top-0 z-50 h-12 border-b border-white/10 bg-black/70 backdrop-blur-xl backdrop-saturate-150">
+            <nav className="mx-auto flex h-full max-w-[980px] items-center justify-between px-4">
+                <a href="#home" className="text-[15px] font-semibold tracking-[-0.01em] text-white/90 transition-colors hover:text-white">
+                    Nitish Gopinath
+                </a>
+                <div className="flex items-center gap-7">
+                    <ul className="hidden items-center gap-7 md:flex">
+                        {navLinks
+                            .filter((link) => link.href !== '#home')
+                            .map((link) => (
+                                <li key={link.id}>
+                                    <a
+                                        href={link.href}
+                                        className="text-[12px] text-white/80 transition-colors duration-200 hover:text-white"
+                                    >
+                                        {link.name}
+                                    </a>
+                                </li>
+                            ))}
+                    </ul>
+                    <a
+                        href={LINKS.resume}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full bg-accent px-3 py-1 text-[12px] font-medium text-black transition-opacity hover:opacity-90"
+                    >
+                        Résumé
                     </a>
-            </div>
+                </div>
+            </nav>
         </header>
-      );
+    );
 }
- 
+
 export default Navbar;

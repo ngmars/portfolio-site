@@ -13,7 +13,7 @@ const CanvasLoader = () => {
             }}
         >
             <span className="canvas-loader"/>
-            <p style={{ fontSize: 14, color: "#35c19f", fontWeight: 800, marginTop: 24, letterSpacing: '0.2em' }}>
+            <p style={{ fontSize: 13, color: "#86868b", fontWeight: 500, marginTop: 16 }}>
                 {
                     (progress !== 0) ?
                     (`${Math.round(progress)}%`) : ("Loading...")
