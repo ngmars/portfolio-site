@@ -6,7 +6,8 @@
    opt-in for anchor jumps only and off for reduced-motion users. */
 html {
   scroll-behavior: auto;
-  scroll-padding-top: 48px;
+  /* Clears the floating nav (10px inset + 52px bar) when jumping to a section */
+  scroll-padding-top: 72px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -46,12 +47,17 @@ body {
 
   /* ---------- Links & buttons ---------- */
   .link-more {
-    @apply inline-flex items-center gap-1 text-[17px] text-accent transition-colors duration-200 ease-apple hover:underline;
+    @apply inline-flex items-center gap-1 text-[17px] text-accent transition-opacity duration-200 ease-apple hover:opacity-80;
   }
 
+  /* Chevron nudges right on hover instead of underlining */
   .link-more::after {
     content: '›';
-    @apply text-[1.15em] leading-none;
+    @apply text-[1.15em] leading-none transition-transform duration-200 ease-apple;
+  }
+
+  .link-more:hover::after {
+    transform: translateX(3px);
   }
 
   .btn-primary {

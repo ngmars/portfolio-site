@@ -60,7 +60,7 @@ const AboutSection = () => {
                 <div className="relative z-30 flex max-w-[980px] flex-col items-center px-4 text-center">
                     <p className="eyebrow">About</p>
                     <h2 className="headline-lg mt-2 text-white">
-                        Turning messy data into tools people use.
+                        Messy data in. Useful tools out.
                     </h2>
                     <p className="body-lg mt-5 max-w-2xl">
                         I&apos;m a data scientist at DNV in Hamburg, building analytics and ML

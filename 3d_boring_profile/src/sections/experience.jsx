@@ -13,7 +13,7 @@ const experiences = [
     role: 'Data Scientist',
     location: 'Hamburg, Germany',
     period: 'Jan 2024 – Present',
-    year: '2024',
+    year: '2024 – now', // current role
     logo: 'img/Company_logos/DNV_logo.png',
     highlights: [
       'Developing the TR10 tool in Python for operational site quality assessments using large-scale wind turbine data',
@@ -163,7 +163,7 @@ const ExperienceSection = () => {
             <div className="sticky top-32">
               <span
                 ref={yearRef}
-                className="block text-[clamp(80px,12vw,160px)] font-semibold leading-none tracking-[-0.04em] text-ink"
+                className="block whitespace-nowrap text-[clamp(48px,6.6vw,72px)] font-semibold leading-none tracking-[-0.04em] text-ink"
               >
                 {experiences[0].year}
               </span>

@@ -33,18 +33,18 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
       text: 'text-[clamp(8px,1.4vh,10px)]',
     },
     md: {
-      wrapper: 'size-[clamp(1.875rem,4.7vh,2.5rem)] shrink-0',
-      icon: 'size-[clamp(1.5rem,3.8vh,2rem)]',
+      wrapper: 'size-[clamp(2.25rem,6.2vh,3.25rem)] shrink-0',
+      icon: 'size-[clamp(1.875rem,5.2vh,2.75rem)]',
       text: 'text-[clamp(9px,1.6vh,12px)]',
     },
     lg: {
-      wrapper: 'size-[clamp(2rem,5.2vh,2.75rem)] shrink-0',
-      icon: 'size-[clamp(1.625rem,4.3vh,2.25rem)]',
+      wrapper: 'size-[clamp(2.375rem,6.4vh,3.5rem)] shrink-0',
+      icon: 'size-[clamp(2rem,5.4vh,3rem)]',
       text: 'text-[clamp(9px,1.6vh,12px)]',
     },
     xl: {
-      wrapper: 'size-[clamp(2.5rem,7vh,4rem)] shrink-0',
-      icon: 'size-[clamp(2rem,5.8vh,3.25rem)]',
+      wrapper: 'size-[clamp(3rem,8.5vh,4.75rem)] shrink-0',
+      icon: 'size-[clamp(2.5rem,7.2vh,4rem)]',
       text: 'text-[clamp(10px,1.8vh,14px)]',
     },
   };
@@ -52,8 +52,8 @@ const SkillItem = ({ icon: Icon, name, color, size = 'md' }) => {
   return (
     <div className="flex min-w-0 shrink-0 flex-col items-center gap-1">
       <div
-        className={`flex ${wrapper} items-center justify-center overflow-hidden text-white transition-colors duration-200 group-hover:text-[var(--icon-color)]`}
-        style={{ '--icon-color': color }}
+        className={`flex ${wrapper} items-center justify-center overflow-hidden`}
+        style={{ color }}
       >
         <Icon className={`${iconSize} shrink-0`} />
       </div>
@@ -87,7 +87,7 @@ const Card = ({ children, className = '', size = 'md' }) => {
   };
   return (
     <div
-      className={`group overflow-hidden rounded-[24px] bg-surface-card md:bg-black/60 md:backdrop-blur-xl transition-colors duration-200 ${padding[size]} ${className}`}
+      className={`overflow-hidden rounded-[24px] bg-surface-card ring-1 ring-transparent transition-[background-color,box-shadow] duration-300 ease-apple hover:ring-white/25 md:bg-black/60 md:backdrop-blur-xl md:hover:bg-black/40 ${padding[size]} ${className}`}
     >
       {children}
     </div>
@@ -98,7 +98,7 @@ const SkillsCard = () => {
   const programmingLanguages = [
     { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
     { icon: SiPython, name: 'Python', color: '#3776AB' },
-    { icon: SiCplusplus, name: 'C++', color: '#00599C' },
+    { icon: SiCplusplus, name: 'C++', color: '#3A86CC' },
   ];
 
   const fullStack = [
@@ -112,7 +112,7 @@ const SkillsCard = () => {
 
   const databases = [
     { icon: TbDatabase, name: 'Vector DB', color: '#6366f1' },
-    { icon: SiPostgresql, name: 'SQL', color: '#336791' },
+    { icon: SiPostgresql, name: 'SQL', color: '#5288BC' },
     { icon: SiMongodb, name: 'NoSQL', color: '#47A248' },
     { icon: SiApachekafka, name: 'Kafka', color: '#A0AEC0' },
     { icon: SiDatabricks, name: 'ETL/ELT', color: '#FF3621' },
@@ -129,7 +129,7 @@ const SkillsCard = () => {
     { icon: SiPytorch, name: 'PyTorch', color: '#EE4C2C' },
     { icon: SiTensorflow, name: 'TensorFlow', color: '#FF6F00' },
     { icon: SiLangchain, name: 'LangChain', color: '#10A37F' },
-    { icon: SiOpenai, name: 'OpenAI Assistants', color: '#412991' },
+    { icon: SiOpenai, name: 'OpenAI Assistants', color: '#7F6CE0' },
   ];
 
   const dataAndDevOps = [
@@ -148,7 +148,7 @@ const SkillsCard = () => {
         <div className="mb-[clamp(0.375rem,1.5vh,1rem)]">
           <SkillSection skills={programmingLanguages} size="lg" />
         </div>
-        <div className="flex w-full min-h-0 flex-1 flex-col p-[clamp(0.25rem,1vh,0.75rem)]">
+        <div className="flex w-full min-h-0 flex-1 flex-col rounded-2xl border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.5rem)]">
           <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
             Full stack
           </h3>
@@ -185,7 +185,7 @@ const SkillsCard = () => {
       {/* Cloud & Data - long, full width bottom with sub-tiles */}
       <Card className="flex min-h-0 flex-col items-center text-center md:col-span-3" size="md">
         <div className="flex w-full min-h-0 flex-1 flex-col gap-4 md:flex-row md:gap-[clamp(0.75rem,2.2vh,1.5rem)]">
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-[clamp(0.25rem,1vh,0.75rem)] text-center">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
             <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
               DevOps
             </h3>
@@ -195,7 +195,7 @@ const SkillsCard = () => {
               ))}
             </div>
           </div>
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center p-[clamp(0.25rem,1vh,0.75rem)] text-center">
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-[clamp(0.625rem,2.2vh,1.75rem)] text-center">
             <h3 className="mb-[clamp(0.375rem,1.5vh,1rem)] text-[clamp(0.6875rem,1.6vh,0.875rem)] font-semibold text-muted">
               Cloud
             </h3>
