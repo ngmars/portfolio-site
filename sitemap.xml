@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Single-page site: sections (#about, #experience, …) are anchors on the same
+     URL, which search engines treat as one page, so only the root is listed.
+     Update <lastmod> when the content changes meaningfully. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://nitishgopinath.me/</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+</urlset>
