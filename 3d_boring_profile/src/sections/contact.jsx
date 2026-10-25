@@ -140,7 +140,7 @@ const ContactSection = () => {
 
       <footer className="bg-surface-light text-ink-muted">
         <div className="mx-auto flex max-w-[980px] flex-col items-center justify-between gap-3 border-t border-black/10 px-4 py-5 text-[12px] sm:flex-row">
-          <p>© {new Date().getFullYear()} Nitish Gopinath</p>
+          <p>© {new Date().getFullYear()} · Hand-crafted by Nitish Gopinath</p>
           <div className="flex gap-6">
             <a href={LINKS.linkedin} target="_blank" rel="noreferrer" className="hover:text-ink hover:underline">LinkedIn</a>
             <a href={LINKS.github} target="_blank" rel="noreferrer" className="hover:text-ink hover:underline">GitHub</a>
