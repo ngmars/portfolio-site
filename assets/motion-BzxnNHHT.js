@@ -1,0 +1,1 @@
+const e="power2.out",o={autoAlpha:0,y:24,duration:.8,ease:e},n="(min-width: 768px) and (prefers-reduced-motion: no-preference)",r="(max-width: 767px) and (prefers-reduced-motion: no-preference)",t="(prefers-reduced-motion: no-preference)";export{t as A,n as D,r as M,o as R};
